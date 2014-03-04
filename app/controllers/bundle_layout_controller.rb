@@ -1,0 +1,2 @@
+class BundleLayoutController < ApplicationController
+end

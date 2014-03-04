@@ -1,0 +1,77 @@
+<%= javascript_include_tag "bundle_radial" %>
+<script>
+
+
+$( document ).ready(function() {
+	$("#ex2").slider();
+	 $('#ex2').on('slide', function(ev) {
+		console.log(ev.value[0]);
+		console.log(ev.value[1]);
+		$("#sliderValLabel1").val(ev.value[0]);
+		$("#sliderValLabel2").val(ev.value[1]);
+	});
+	
+$('#slider1').slider({tooltip: 'always'});
+$('#slider1').on('slide', function(ev) {
+		$("#sliderValLabel").val(ev.value);
+		showRadial(ev.value);
+		
+	});
+
+$("#sliderValLabel").keyup(function (ev) {
+    if (ev.keyCode == 13) {
+    	var val = parseInt($("#sliderValLabel").val());
+    	if(val>100 || val<0){
+    		val = 100;
+    		$("#sliderValLabel").val(val);
+    	}
+    	$('#slider1').slider('setValue', val);
+    	
+        showRadial(val);
+    }
+});
+
+$('#loading-indicator').hide();  // hide it initially.
+  $(document)  
+    .ajaxStart(function() {
+    	$('#loading-indicator').show(); // show on any Ajax event.
+    	$('#loading-indicator').modal('show');
+      
+    })
+    .ajaxStop(function() {
+    	$('#loading-indicator').hide(); // hide it when it is done.
+    	$('#loading-indicator').modal('hide');
+  });
+});
+
+	
+	
+</script>
+<div id="loading-indicator">
+ <%= image_tag("loader.gif", :id => "loading-indicator") %>
+</div>
+
+<input id="ex2" type="text" class="span2" value="[30,80]" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="[30,80]"/>
+
+<span style="margin-left: 20px"> Bottom Simil: </span><input id="sliderValLabel1"  type="number" name="quantity" min="0" max="100" value="30"></input>
+<span style="margin-left: 20px"> Top Simil: </span><input id="sliderValLabel2"  type="number" name="quantity" min="0" max="100" value="80"></input>
+
+
+<span class="btn btn-default btn-lg" role="button"> <%= link_to 'Generar', inverted_radial_layout_path ,:method => 'POST',:remote => true%></span>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<input type="text" id="slider1" class="span2 slider" value="100" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="75" data-slider-tooltip="show">
+		<span style="margin-left: 20px"> Tesion Actual: </span><input id="sliderValLabel"  type="number" name="quantity" min="0" max="100" value="75"></input>
+	</div>
+</div>
+<div class="panel panel-primary">
+	<div class="panel-heading"></div>
+	<div class = "row">
+		<div class="col-md-8 col-md-offset-2">
+			<div id="panel-radial" class="panel-body ">
+				<%= javascript_tag "showRadial(75);" %>
+				</div class = "panel-footer">
+			</div>
+		</div>
+	</div>
