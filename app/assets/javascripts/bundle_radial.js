@@ -42,7 +42,7 @@ function loadRadialButton(){
 
 
 function showRadial(num){
-	console.log("muestro");
+
 var tension = num/100.0;
 var diameter = 660,
     radius = diameter / 2,
@@ -81,8 +81,7 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .each(function(d) { 
         d.source = d[0], d.target = d[d.length - 1]; 
         })
-      .attr("class", "link")
-      
+      .attr("class", "link") 
       .attr("d", line);
 
   node = node

@@ -1,0 +1,2 @@
+module BundleCollapseTreeHelper
+end
