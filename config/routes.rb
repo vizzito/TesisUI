@@ -1,8 +1,10 @@
 TesisUI::Application.routes.draw do
   get "inverted_radial_layout" => 'inverted_radial_layout#index'
-  post "inverted_radial_layout" => 'inverted_radial_layout#generate'
+  #post "inverted_radial_layout" => 'inverted_radial_layout#generate'
+  post "tree_generator" => 'tree_generator#generate'
   get "tree_layout" => 'tree_layout#index'
   get "bundle_layout" => 'bundle_layout#index'
+  get "parameters_layout" => 'parameters_layout#index'
   get "welcome/index"
   root "welcome#index"
   # The priority is based upon order of creation: first created -> highest priority.

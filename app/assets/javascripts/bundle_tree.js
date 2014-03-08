@@ -1,5 +1,43 @@
 //= require d3.js
 //= require common_bundle.js
+
+function loadTreeButton(){
+	$('#generarButtonTree').click(function(event) {
+		$('.loading-indicator').hide();
+		$(document).ajaxStart(function() {
+			$('#myModal').show();
+			$('#myModal').modal({backdrop: 'static',
+					  keyboard: false,
+					  show: true
+			});
+		}).ajaxStop(function() {
+			$('#myModal').hide();
+			$('#myModal').modal('hide');
+		});
+		
+		$.ajax({
+			type: "POST",
+			    url: "/tree_generator#generate",
+			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
+			    	   topsimil:  $('#sliderValLabel2').val()},
+			    dataType: "text",
+
+			    success: function(response) {    	 
+				         showTree();
+			    },
+			    error: function(data){
+			    alert("fail");
+
+			    }
+			});
+	});
+
+	$("#slidertwo").slider();
+	$('#slidertwo').on('slide', function(ev) {
+		$("#sliderValLabel1").val(ev.value[0]);
+		$("#sliderValLabel2").val(ev.value[1]);
+	});
+}
 function showTree(){
 var width = 660,
     height = 400;
@@ -9,7 +47,7 @@ var cluster = d3.layout.cluster()
 
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
-
+$("#panel-tree").html("");
 var svg = d3.select("#panel-tree").append("svg")
     .attr("width", width)
     .attr("height", height)

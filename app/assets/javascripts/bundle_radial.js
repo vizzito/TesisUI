@@ -2,7 +2,47 @@
 //= require common_bundle.js
 //= require bootstrap-slider
 
+function loadRadialButton(){
+	$('#generarButtonRadial').click(function(event) {
+		$('.loading-indicator').hide();
+		$(document).ajaxStart(function() {
+			$('#myModal').show();
+			$('#myModal').modal({backdrop: 'static',
+					  keyboard: false,
+					  show: true
+			});
+		}).ajaxStop(function() {
+			$('#myModal').hide();
+			$('#myModal').modal('hide');
+		});
+		
+		$.ajax({
+			type: "POST",
+			    url: "/tree_generator#generate",
+			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
+			    	   topsimil:  $('#sliderValLabel2').val()},
+			    dataType: "text",
+
+			    success: function(response) {    	 
+				         showRadial(75);
+			    },
+			    error: function(data){
+			    alert("fail");
+
+			    }
+			});
+	});
+
+	$("#slidertwo").slider();
+	$('#slidertwo').on('slide', function(ev) {
+		$("#sliderValLabel1").val(ev.value[0]);
+		$("#sliderValLabel2").val(ev.value[1]);
+	});
+}
+
+
 function showRadial(num){
+	console.log("muestro");
 var tension = num/100.0;
 var diameter = 660,
     radius = diameter / 2,

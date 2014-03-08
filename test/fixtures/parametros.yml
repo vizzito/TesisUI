@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bottomsimil: 1
+  topsimil: 1
+  tension: 1
+
+two:
+  bottomsimil: 1
+  topsimil: 1
+  tension: 1

@@ -1,5 +1,43 @@
 //= require d3.js
 //= require common_bundle.js
+function loadBundleButton(){
+	
+	$('#generarButtonBundle').click(function(event) {
+		$('.loading-indicator').hide();
+		$(document).ajaxStart(function() {
+			$('#myModal').show();
+			$('#myModal').modal({backdrop: 'static',
+					  keyboard: false,
+					  show: true
+			});
+		}).ajaxStop(function() {
+			$('#myModal').hide();
+			$('#myModal').modal('hide');
+		});
+		
+		$.ajax({
+			type: "POST",
+			    url: "/tree_generator#generate",
+			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
+			    	   topsimil:  $('#sliderValLabel2').val()},
+			    dataType: "text",
+
+			    success: function(response) {    	 
+			    	showBundle();
+			    },
+			    error: function(data){
+			    alert("fail");
+
+			    }
+			});
+	});
+
+	$("#slidertwo").slider();
+	$('#slidertwo').on('slide', function(ev) {
+		$("#sliderValLabel1").val(ev.value[0]);
+		$("#sliderValLabel2").val(ev.value[1]);
+	});
+}
 function showBundle(){
 var margin = {top: 40, right: 40, bottom: 40, left: -150},
     width = 500 - margin.left - margin.right,
@@ -17,7 +55,7 @@ var line = d3.svg.line()
     .tension(.85)
     .x(function(d) { return d.y; })
     .y(function(d) { return d.x; });
-
+$("#panel-bundle").html("");
 var svg = d3.select("#panel-bundle").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
