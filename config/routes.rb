@@ -5,13 +5,6 @@ TesisUI::Application.routes.draw do
  
  
  
-  #get "tree_layout" => 'tree_layout#index'
-  #get "bundle_layout" => 'bundle_layout#index'
-  #get "parameters_layout" => 'parameters_layout#index'
-  #get "rotate_cluster_layout" => 'bundle_rotate_cluster#index'
-  #get "collapse_tree_layout" => 'bundle_collapse_tree#index'
-  #get "welcome/index"
-  #root "welcome#index"
   
   get "parameters_layout" => 'parameters_layout'
   
@@ -22,7 +15,7 @@ TesisUI::Application.routes.draw do
   get "collapse_tree_layout" => 'pages#bundle_collapse_layout'
   
   get "welcome/index"
-  root "welcome#index"
+  root "pages#inverted_radial_layout"
  
  
   # The priority is based upon order of creation: first created -> highest priority.

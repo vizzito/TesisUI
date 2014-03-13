@@ -5,24 +5,20 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+Install
+* Ruby version - ruby 2.1
+* Rails version 4.0.2
+* Tomcat 7.0.50
+* Maven 3.0.4
 
-* System dependencies
+Steps
+- migrate the DB
+  rake db:migrate (from console) 
+- install library dependencies
+  bundle install
+- Start Rails server
+  rails server // default on :3000
+- maven clean install to generate .war // default in target folder
+- copy META-INF and WEB-INF folders into tomcat server (/webapps/ServiceClusterer/ folder)
+- run tomcat server (port 8080)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

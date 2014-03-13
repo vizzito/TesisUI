@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
- @params = Parametros.find(:first)
+    @title = "Home"
   end
 end
