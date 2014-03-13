@@ -13,11 +13,11 @@ Install
 
 Steps
 - migrate the DB
-  rake db:migrate (from console) 
+  ==>rake db:migrate (from console) 
 - install library dependencies
-  bundle install
+  ==>bundle install
 - Start Rails server
-  rails server // default on :3000
+  ==>rails server // default on :3000
 - maven clean install to generate .war // default in target folder
 - copy META-INF and WEB-INF folders into tomcat server (/webapps/ServiceClusterer/ folder)
 - run tomcat server (port 8080)
