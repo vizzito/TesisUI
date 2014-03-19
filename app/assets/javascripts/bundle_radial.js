@@ -1,8 +1,10 @@
 //= require d3.js
 //= require common_bundle.js
 //= require bootstrap-slider
-
+//= require popover
+//var serviceName = "default";
 function loadRadialButton(){
+
 	$('#generarButtonRadial').click(function(event) {
 		$('.loading-indicator').hide();
 		$(document).ajaxStart(function() {
@@ -38,11 +40,12 @@ function loadRadialButton(){
 		$("#sliderValLabel1").val(ev.value[0]);
 		$("#sliderValLabel2").val(ev.value[1]);
 	});
+
 }
 
 
-function showRadial(num){
-
+function showRadial(num){    
+	//doPop();
 var tension = num/100.0;
 var diameter = 660,
     radius = diameter / 2,
@@ -72,10 +75,18 @@ var svg = d3.select("#panel-radial").append("svg")
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
+
+//var list = JSON.parse("/tmp/files/map.json");
+//var request = new XMLHttpRequest();
+//request.open("GET", "/tmp/files/map.json", false);
+//request.send(null);
+//var mapFiles = JSON.parse(request.responseText);
+new MapFiles();
+
 d3.json("/tmp/files/datafile.json", function(error, classes) {
       var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes);
-
+ 
   link = link.data(bundle(links))
   .enter().append("path")
       .each(function(d) { 
@@ -94,10 +105,44 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
       .text(function(d) { return d.key; })
       .on("mouseover", mouseovered)
-      .on("mouseout", mouseouted);
-});
+      .on("mouseout", mouseouted)
+  	 // .on("mouseover",popover)
+  	.on("click",popover);
+//  node.on("click",function(event){
+//	  popover(); 
+//  });
 
+});
+/*
+function popover(d){
+	 fileName = mapFiles[serviceName][0];
+	 fileRoute = mapFiles[serviceName][1];
+	 $("#FirstDiv").text(serviceName); 
+	  $("#SecondDiv").text(fileName); 
+	  $("#ThirdDiv").text(fileRoute);
+	  $(this).popover({
+		 
+		  trigger: 'click',
+		  animation:true,
+		  delay: 0,
+	      title: serviceName,
+	      html:true,
+	      content: function(){
+	    	  return $('#popover_content_wrapper').html();
+	    	  },
+	      container: $("body"),
+	  });
+}
+
+function loadPopWsdlFile(pepe){
+	  var tittle = $('.popover-title').attr('name');
+	  var xml = "<wsdl:operation name=\"AltaRelaciones\"></wsdl:operation>";
+	  $( "#dialog" ).text(xml);
+	  $( "#dialog" ).dialog();
+	}
+*/
 function mouseovered(d) {
+	  mapFiles.serviceName = d.name;
 	  node
 	      .each(function(n) { n.target = n.source = false; });
 

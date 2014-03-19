@@ -5,7 +5,9 @@ gem 'rails', '4.0.2'
 gem 'debugger'
 gem 'bootstrap-sass'
 gem "bootstrap-slider-rails", "~> 1.9.0"
+gem 'jquery-ui-sass-rails'
 
+#gem 'jquery-ui-sass-rails'
 group :development do
   gem 'rails_layout'
 end

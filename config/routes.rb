@@ -7,7 +7,7 @@ TesisUI::Application.routes.draw do
  
   
   get "parameters_layout" => 'parameters_layout'
-  
+  post "popover_layout" => 'pages/popover_layout#popover_layout'
   get "tree_layout" => 'pages#tree_layout'
   get "inverted_radial_layout" => 'pages#inverted_radial_layout'
   get "bundle_layout" => 'pages#bundle_edge_layout'

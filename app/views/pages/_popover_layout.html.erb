@@ -1,0 +1,32 @@
+<%= javascript_include_tag "popover" %>
+<div id="popover_content_wrapper" style="display: none">
+	<div id="FirstDiv"></div>
+	<div id="SecondDiv"></div>
+	<div id="ThirdDiv"></div>
+	<div>
+		<a class="navbar-brand"><%= link_to 'Home', root_path, class: 'navbar-brand' %></a>
+		<button class="btn" onclick="loadPopWsdlFile()">
+			View File
+		</button>
+	</div>
+</div>
+<div id="dialog" title="pepe"></div>
+<div id = "showFileInformation" title="File Information">
+	<p><span id="serviceName">holll</span></p>
+	<p><span id="fileName"></span></p>
+	<p><span id="fileRoute"></span></p>
+</div>
+
+
+<div id="dialog-message" title="Download complete">
+  <p>
+    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+    Your files have downloaded successfully into the My Downloads folder.
+  </p>
+  <p>
+    Currently using <b>36% of your storage space</b>.
+  </p>
+</div>
+
+<br />
+<div id="modal"></div>

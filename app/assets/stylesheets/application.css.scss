@@ -5,8 +5,8 @@
 @import "inverted_radial_layout.css.scss";
 @import "bundle_rotate_cluster.css.scss";
 @import "bundle_rotate_cluster.css.scss";
-
-// make all images responsive by default
+@import "popover_layout.css.scss";
+@import "jquery.ui.all";
 img {
   @extend .img-responsive;
   margin: 0 auto;

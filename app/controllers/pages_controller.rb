@@ -18,4 +18,8 @@ class PagesController < ApplicationController
   def tree_layout
     @title = "Tree"
   end
+  
+  def popover_layout
+    @content = "<div>hola mundo</div>"
+  end
 end
