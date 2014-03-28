@@ -11,8 +11,10 @@ class TreeGeneratorController < ApplicationController
     @params = Parametros.first
     bottom = params[:bottomsimil]
     top = params[:topsimil]
+    selectedFiles = params[:files]
     updateParams(bottom,top)
-    callService(bottom,top)
+    
+    callService(bottom,top,selectedFiles)
     extension = "json"
     create_file(extension,@data)
     respond_to do |format|

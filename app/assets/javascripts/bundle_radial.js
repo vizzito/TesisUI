@@ -1,11 +1,29 @@
 //= require d3.js
 //= require common_bundle.js
 //= require bootstrap-slider
+//= require map_files.js
 //= require popover
 //var serviceName = "default";
 function loadRadialButton(){
 
 	$('#generarButtonRadial').click(function(event) {
+		var row = $('#files-table').find('tr');
+		var selectedFiles = [];
+//		for(i=0;i<row.length;i++){
+//			if (row[i].hasClass('selected'))
+//				selectedFiles.push(row[i]);
+//		}
+		
+		$('#files-table tr').each(function(){
+			if($(this).hasClass('selected'))
+				{
+				selectedFiles.push(this.innerText);
+				}
+			});
+		
+		//obtiene los archivos seleccionados del panel
+		filesMapToGenerate = getSelectedFiles(selectedFiles);
+		
 		$('.loading-indicator').hide();
 		$(document).ajaxStart(function() {
 			$('#myModal').show();
@@ -22,8 +40,9 @@ function loadRadialButton(){
 			type: "POST",
 			    url: "/tree_generator#generate",
 			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
-			    	   topsimil:  $('#sliderValLabel2').val()},
-			    dataType: "text",
+			    	   topsimil:  $('#sliderValLabel2').val(),
+			    	   files: filesMapToGenerate},
+			    dataType: "json",
 
 			    success: function(response) {    	 
 				         showRadial(75);
@@ -44,8 +63,8 @@ function loadRadialButton(){
 }
 
 
-function showRadial(num){    
-	//doPop();
+function showRadial(num){   
+
 var tension = num/100.0;
 var diameter = 660,
     radius = diameter / 2,
@@ -81,7 +100,11 @@ var link = svg.append("g").selectAll(".link"),
 //request.open("GET", "/tmp/files/map.json", false);
 //request.send(null);
 //var mapFiles = JSON.parse(request.responseText);
-new MapFiles();
+
+//esto se va a hacer dinamicamente desde la carga de los archivos de la UI
+new mapperServices();
+//////////////////////////////////////////////
+
 
 d3.json("/tmp/files/datafile.json", function(error, classes) {
       var nodes = cluster.nodes(packages.root(classes)),
@@ -113,36 +136,9 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
 //  });
 
 });
-/*
-function popover(d){
-	 fileName = mapFiles[serviceName][0];
-	 fileRoute = mapFiles[serviceName][1];
-	 $("#FirstDiv").text(serviceName); 
-	  $("#SecondDiv").text(fileName); 
-	  $("#ThirdDiv").text(fileRoute);
-	  $(this).popover({
-		 
-		  trigger: 'click',
-		  animation:true,
-		  delay: 0,
-	      title: serviceName,
-	      html:true,
-	      content: function(){
-	    	  return $('#popover_content_wrapper').html();
-	    	  },
-	      container: $("body"),
-	  });
-}
 
-function loadPopWsdlFile(pepe){
-	  var tittle = $('.popover-title').attr('name');
-	  var xml = "<wsdl:operation name=\"AltaRelaciones\"></wsdl:operation>";
-	  $( "#dialog" ).text(xml);
-	  $( "#dialog" ).dialog();
-	}
-*/
 function mouseovered(d) {
-	  mapFiles.serviceName = d.name;
+	  mapServices.serviceName = d.name;
 	  node
 	      .each(function(n) { n.target = n.source = false; });
 

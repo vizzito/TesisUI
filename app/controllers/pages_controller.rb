@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def inverted_radial_layout
     @title = "Inverted Radial"
+
   end
 
   def bundle_rotate_layout
@@ -19,7 +20,4 @@ class PagesController < ApplicationController
     @title = "Tree"
   end
   
-  def popover_layout
-    @content = "<div>hola mundo</div>"
-  end
 end

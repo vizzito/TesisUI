@@ -10,20 +10,29 @@
       </button>
       <a class="navbar-brand"><%= link_to 'Home', root_path, class: 'navbar-brand' %></a>
     </div>
-
+    <!-- AGREGARLO AL PANEL PRINCIPAL... VER COMO!!-->
+    
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+      	<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Archivo <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a>Abrir</a></li>
+                      
+          </ul>          
+        </li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Graficos <b class="caret"></b></a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Graphics <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a></a><%= link_to 'Inverted Radial Layout', inverted_radial_layout_path %> </li>
             <li><a></a><%= link_to 'Bundle Layout', bundle_layout_path %></li>
             <li><a></a><%= link_to 'Tree Layout', tree_layout_path %></li>
             <li><a></a><%= link_to 'Rotate Cluster Layout', rotate_cluster_layout_path %></li>
             <li><a></a><%= link_to 'Collapse Tree Layout', collapse_tree_layout_path %></li>
-          </ul>
+          </ul>          
         </li>
+        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

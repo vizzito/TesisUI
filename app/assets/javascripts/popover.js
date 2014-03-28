@@ -1,14 +1,13 @@
 //= require bootstrap
-
 //var serviceName = "default";
-var mapFiles;// = new Map(null);
+
 function popover(d) {
-    serviceName = mapFiles.serviceName;
-    fileName = mapFiles.fileName;
-    fileRoute = mapFiles.fileRoute;
-	if (mapFiles.map != null) {
-		mapFiles.fileName = mapFiles.map[serviceName][0];
-		mapFiles.fileRoute = mapFiles.map[serviceName][1];
+    serviceName = mapServices.serviceName;
+    fileName = mapServices.fileName;
+    fileRoute = mapServices.fileRoute;
+	if (mapServices.map != null) {
+		mapServices.fileName = mapServices.map[serviceName][0];
+		mapServices.fileRoute = mapServices.map[serviceName][1];
 		$("#FirstDiv").text(serviceName);
 		$("#SecondDiv").text(fileName);
 		$("#ThirdDiv").text(fileRoute);
@@ -31,9 +30,9 @@ function loadPopWsdlFile(pepe) {
 	
 	//var tittle = $('.popover-title').attr('name');
 	//var xml = "<wsdl:operation name=\"AltaRelaciones\"></wsdl:operation>";
-	$("#serviceName").text('ServiceName = '+mapFiles.serviceName+"\n");
-	$("#fileName").text('FileName = '+mapFiles.fileName+"\n");
-	$("#fileRoute").text('FileRoute = '+mapFiles.fileRoute+"\n");
+	$("#serviceName").text('ServiceName = '+mapServices.serviceName+"\n");
+	$("#fileName").text('FileName = '+mapServices.fileName+"\n");
+	$("#fileRoute").text('FileRoute = '+mapServices.fileRoute+"\n");
 	$("#serviceName").appendTo('#showFileInformation');
 	$("#fileName").appendTo('#showFileInformation');
 	$("#fileRoute").appendTo('#showFileInformation');
@@ -48,7 +47,7 @@ function loadPopWsdlFile(pepe) {
 	
 	//$("#dialog-message").dialog();
 }
-
+/*
 function MapFiles() {
 	//mapFiles = getMap();
 	if (mapFiles == null) {
@@ -71,4 +70,4 @@ function Map(map) {
 	this.getMap = function(){
 		return this;
 	};
-}
+}*/
