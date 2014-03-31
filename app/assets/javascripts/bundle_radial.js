@@ -129,28 +129,48 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .text(function(d) { return d.key; })
       .on("mouseover", mouseovered)
       .on("mouseout", mouseouted)
-  	 // .on("mouseover",popover)
-  	.on("click",popover);
-//  node.on("click",function(event){
-//	  popover(); 
-//  });
 
 });
 
 function mouseovered(d) {
-	  mapServices.serviceName = d.name;
-	  node
-	      .each(function(n) { n.target = n.source = false; });
+    mapServices.serviceName = d.name;
+    node
+      .each(function(n) { n.target = n.source = false; });
 
-	  link
-	      .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
-	      .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
-	    .filter(function(l) { return l.target === d || l.source === d; })
-	      .each(function() { this.parentNode.appendChild(this); });
+    link
+      .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
+      .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
+      .filter(function(l) { return l.target === d || l.source === d; })
+      .each(function() { this.parentNode.appendChild(this); });
 
-	  node
-	      .classed("node--target", function(n) { return n.target; })
-	      .classed("node--source", function(n) { return n.source; });
+    node
+      .classed("node--target", function(n) { return n.target; })
+      .classed("node--source", function(n) { return n.source; });
+
+    var serviceName = mapServices.serviceName;
+    var fileName = mapServices.fileName;
+    var fileRoute = mapServices.fileRoute;
+    if (mapServices.map != null) {
+        mapServices.fileName = mapServices.map[serviceName][0];
+        mapServices.fileRoute = mapServices.map[serviceName][1];
+        $("#FirstDiv").text(serviceName);
+        $("#SecondDiv").text(fileName);
+        $("#ThirdDiv").text(fileRoute);
+
+        $(this).popover({
+
+            trigger : 'click',
+            animation : true,
+            delay : 0,
+            title : serviceName + '<button type="button" class="close" onclick="$(&quot;body>.popover&quot;).hide();">&times;</button>',
+            html: 'true',
+            content : function() {
+                return $('#popover_content_wrapper').html();
+            },
+            container : $("body")
+        });
+    }
+
 	}
 
 	function mouseouted(d) {

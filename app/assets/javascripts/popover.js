@@ -1,30 +1,36 @@
 //= require bootstrap
 //var serviceName = "default";
 
-function popover(d) {
-    serviceName = mapServices.serviceName;
-    fileName = mapServices.fileName;
-    fileRoute = mapServices.fileRoute;
-	if (mapServices.map != null) {
-		mapServices.fileName = mapServices.map[serviceName][0];
-		mapServices.fileRoute = mapServices.map[serviceName][1];
-		$("#FirstDiv").text(serviceName);
-		$("#SecondDiv").text(fileName);
-		$("#ThirdDiv").text(fileRoute);
-		$(this).popover({
+$.fn.extend({
+    popoverClosable: function (options) {
+        var defaults = {
+            template:
+                '<div class="popover">\
+<div class="arrow"></div>\
+<div class="popover-header">\
+<button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>\
+<h3 class="popover-title"></h3>\
+</div>\
+<div class="popover-content"></div>\
+</div>'
+        };
+        options = $.extend({}, defaults, options);
+        var $popover_togglers = this;
+        $popover_togglers.popover(options);
+        $popover_togglers.on('click', function (e) {
+            e.preventDefault();
+            $popover_togglers.not(this).popover('hide');
+        });
+        $('html').on('click', '[data-dismiss="popover"]', function (e) {
+            $popover_togglers.popover('hide');
+        });
+    }
+});
 
-			trigger : 'click',
-			animation : true,
-			delay : 0,
-			title : serviceName,
-			html : true,
-			content : function() {
-				return $('#popover_content_wrapper').html();
-			},
-			container : $("body"),
-		});
-	}
-}
+$(function () {
+    $('[data-toggle="popover"]').popoverClosable();
+});
+
 
 function loadPopWsdlFile(pepe) {
 	
