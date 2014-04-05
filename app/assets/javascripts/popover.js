@@ -1,39 +1,53 @@
-function popover(d) {
-    serviceName = mapServices.serviceName;
-    fileName = mapServices.fileName;
-    fileRoute = mapServices.fileRoute;
-	if (mapServices.map != null) {
-		mapServices.fileName = mapServices.map[serviceName][0];
-		mapServices.fileRoute = mapServices.map[serviceName][1];
-		$("#FirstDiv").text(serviceName);
-		$("#SecondDiv").text(fileName);
-		$("#ThirdDiv").text(fileRoute);
-		$(this).popover({
 
-			trigger : 'click',
-			animation : true,
-			delay : 0,
-			title : serviceName,
-			html : true,
-			content : function() {
-				return $('#popover_content_wrapper').html();
-			},
-			container : $("body"),
-		});
-	}
-}
+//function popover(d) {
+//    serviceName = mapServices.serviceName;
+//    fileName = mapServices.fileName;
+//    fileRoute = mapServices.fileRoute;
+//	if (mapServices.map != null) {
+//		mapServices.fileName = mapServices.map[serviceName][0];
+//		mapServices.fileRoute = mapServices.map[serviceName][1];
+//		$("#FirstDiv").text(serviceName);
+//		$("#SecondDiv").text(fileName);
+//		$("#ThirdDiv").text(fileRoute);
+//		$(this).popover({
 
-function loadPopWsdlFile(pepe) {
-	
-	//var tittle = $('.popover-title').attr('name');
-	//var xml = "<wsdl:operation name=\"AltaRelaciones\"></wsdl:operation>";
+$.fn.extend({
+    popoverClosable: function (options) {
+        var defaults = {
+            template:
+                '<div class="popover">\
+<div class="arrow"></div>\
+<div class="popover-header">\
+<button type="button" class="close" data-dismiss="popover" aria-hidden="true">&times;</button>\
+<h3 class="popover-title"></h3>\
+</div>\
+<div class="popover-content"></div>\
+</div>'
+        };
+        options = $.extend({}, defaults, options);
+        var $popover_togglers = this;
+        $popover_togglers.popover(options);
+        $popover_togglers.on('click', function (e) {
+            e.preventDefault();
+            $popover_togglers.not(this).popover('hide');
+        });
+        $('html').on('click', '[data-dismiss="popover"]', function (e) {
+            $popover_togglers.popover('hide');
+        });
+    }
+});
+
+$(function () {
+    $('[data-toggle="popover"]').popoverClosable();
+});
+
+function loadPopWsdlFile() {
 	$("#serviceName").text('ServiceName = '+mapServices.serviceName+"\n");
 	$("#fileName").text('FileName = '+mapServices.fileName+"\n");
 	$("#fileRoute").text('FileRoute = '+mapServices.fileRoute+"\n");
 	$("#serviceName").appendTo('#showFileInformation');
 	$("#fileName").appendTo('#showFileInformation');
 	$("#fileRoute").appendTo('#showFileInformation');
-//	$("#showFileInformation").text("");
 	$("#showFileInformation").dialog({
 	      buttons: {
 	        Ok: function() {
@@ -41,30 +55,4 @@ function loadPopWsdlFile(pepe) {
 	        }
 	      }
 	    });
-	
-	//$("#dialog-message").dialog();
 }
-/*
-function MapFiles() {
-	//mapFiles = getMap();
-	if (mapFiles == null) {
-		//mapFiles = new Map();
-		var request = new XMLHttpRequest();
-		request.open("GET", "/tmp/files/map.json", false);
-		request.send(null);
-		mapping = JSON.parse(request.responseText);
-		mapFiles = new Map(mapping,null,null); 
-	} else
-		return mapFiles;
-
-}
-
-function Map(map) {
-	this.map = map;
-	this.fileName = null;
-	this.fileRoute = null;
-	this.serviceName = null;
-	this.getMap = function(){
-		return this;
-	};
-}*/
