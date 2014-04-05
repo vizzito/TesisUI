@@ -1,11 +1,11 @@
 //= require d3.js
 //= require common_bundle.js
-//= require bootstrap-slider
-//= require map_files.js
 //= require popover
-//var serviceName = "default";
-function loadRadialButton(){
 
+
+var files = [];
+function loadRadialButton(){
+	
 	$('#generarButtonRadial').click(function(event) {
 		var row = $('#files-table').find('tr');
 		var selectedFiles = [];
@@ -36,30 +36,33 @@ function loadRadialButton(){
 			$('#myModal').modal('hide');
 		});
 		
+		
+		var data = new FormData();
+		data.append("bottomsimil", $('#sliderValLabel1').val());
+		data.append("topsimil", $('#sliderValLabel2').val());
+		
+		$.each(files, function(key, value)
+		{
+			data.append(key, value);
+		});
+		
 		$.ajax({
-			type: "POST",
-			    url: "/tree_generator#generate",
-			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
-			    	   topsimil:  $('#sliderValLabel2').val(),
-			    	   files: filesMapToGenerate},
-			    dataType: "json",
-
-			    success: function(response) {    	 
+            url: '/tree_generator#generate',
+            type: 'POST',
+            data: data,
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(response) {    	 
 				         showRadial(75);
 			    },
-			    error: function(data){
-			    alert("fail");
-
-			    }
-			});
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+            	console.log('ERRORS: ' + textStatus);
+            }
+        });
 	});
-
-	$("#slidertwo").slider();
-	$('#slidertwo').on('slide', function(ev) {
-		$("#sliderValLabel1").val(ev.value[0]);
-		$("#sliderValLabel2").val(ev.value[1]);
-	});
-
 }
 
 

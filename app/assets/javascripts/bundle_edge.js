@@ -32,11 +32,6 @@ function loadBundleButton(){
 			});
 	});
 
-	$("#slidertwo").slider();
-	$('#slidertwo').on('slide', function(ev) {
-		$("#sliderValLabel1").val(ev.value[0]);
-		$("#sliderValLabel2").val(ev.value[1]);
-	});
 }
 function showBundle(){
 var margin = {top: 40, right: 40, bottom: 40, left: -150},

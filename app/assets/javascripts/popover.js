@@ -1,6 +1,3 @@
-//= require bootstrap
-//var serviceName = "default";
-
 function popover(d) {
     serviceName = mapServices.serviceName;
     fileName = mapServices.fileName;

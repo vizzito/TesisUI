@@ -1,99 +1,105 @@
-//function loadUploader(){
-//$('#upload').fileupload({
-//
-//  // This function is called when a file is added to the queue
-//  add: function (e, data) {
-//    //This area will contain file list and progress information.
-//    var tpl = $('<li class="working">'+
-//                '<input type="text" value="0" data-width="48" data-height="48" data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" />'+
-//                '<p></p><span></span></li>' );
-//
-//    // Append the file name and file size
-//    tpl.find('p').text(data.files[0].name)
-//                 .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
-//
-//    // Add the HTML to the UL element
-//    data.context = tpl.appendTo(ul);
-//
-//    // Initialize the knob plugin. This part can be ignored, if you are showing progress in some other way.
-//    tpl.find('input').knob();
-//
-//    // Listen for clicks on the cancel icon
-//    tpl.find('span').click(function(){
-//      if(tpl.hasClass('working')){
-//              jqXHR.abort();
-//      }
-//      tpl.fadeOut(function(){
-//              tpl.remove();
-//      });
-//    });
-//
-//    // Automatically upload the file once it is added to the queue
-//    var jqXHR = data.submit();
-//  },
-//  progress: function(e, data){
-//
-//        // Calculate the completion percentage of the upload
-//        var progress = parseInt(data.loaded / data.total * 100, 10);
-//
-//        // Update the hidden input field and trigger a change
-//        // so that the jQuery knob plugin knows to update the dial
-//        data.context.find('input').val(progress).change();
-//
-//        if(progress == 100){
-//            data.context.removeClass('working');
-//        }
-//    }
-//});
-////Helper function for calculation of progress
-//function formatFileSize(bytes) {
-//    if (typeof bytes !== 'number') {
-//        return '';
-//    }
-//
-//    if (bytes >= 1000000000) {
-//        return (bytes / 1000000000).toFixed(2) + ' GB';
-//    }
-//
-//    if (bytes >= 1000000) {
-//        return (bytes / 1000000).toFixed(2) + ' MB';
-//    }
-//    return (bytes / 1000).toFixed(2) + ' KB';
-//}
-//}
+// Variable to store your files
+	var files;
 
+	// Add events
+	$('input[type=file]').on('change', prepareUpload);
+	$('form').on('submit', uploadFiles);
 
-		function pepe(e, data) {
-		    var names = [];
-		    var filesList = $('#fileupload')[0].files;
-		    for (var i = 0; i < filesList.length; ++i) {
-		    	var row = "<tr><td>"+filesList[i].name+"</td></tr>";
-		        $(row).appendTo($("#files-table tbody"));
-		    }
-		}
+	// Grab the files and set them to our variable
+	function prepareUpload(event)
+	{
+		files = event.target.files;
+	}
+
+	// Catch the form submit and upload the files
+	function uploadFiles(event)
+	{
+		event.stopPropagation(); // Stop stuff happening
+        event.preventDefault(); // Totally stop stuff happening
+
+        // START A LOADING SPINNER HERE
+
+        // Create a formdata object and add the files
+		var data = new FormData();
+		data.append("bottomsimil", $('#sliderValLabel1').val());
+		data.append("topsimil", $('#sliderValLabel2').val());
 		
-		$("#fileupload").fileupload(function(e, data) {
-		    var names = [];
-		    var filesList = $('#fileupload')[0].files;
-		    for (var i = 0; i < filesList.length; ++i) {
-		    	var row = "<tr><td>"+filesList[i].name+"</td></tr>";
-		        $(row).appendTo($("#files-table tbody"));
-		    }
+		$.each(files, function(key, value)
+		{
+			data.append(key, value);
 		});
-		
-//	    $('#fileupload').fileupload({
-//	    	add: function (e, data) {
-//	    		console.log(data);
-//	    	},
-//	    	change: function (e, data) {
-//	            $.each(data.files, function (index, file) {
-//	                alert('Selected file: ' + file.name);
-//	            });
-//	        },
-//	        submit: function (e, data) {
-//	            $.each(data.result.files, function (index, file) {
-//	                console.log(file.name);
-//	            });
-//	        }
-//	      
-//	    });
+    //    data.append("files",arrFiles);
+        $.ajax({
+            url: '/tree_generator#generate',
+            type: 'POST',
+            data: data,
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data, textStatus, jqXHR)
+            {
+            	if(typeof data.error === 'undefined')
+            	{
+            		// Success so call function to process the form
+            		submitForm(event, data);
+            	}
+            	else
+            	{
+            		// Handle errors here
+            		console.log('ERRORS: ' + data.error);
+            	}
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+            	// Handle errors here
+            	console.log('ERRORS: ' + textStatus);
+            	// STOP LOADING SPINNER
+            }
+        });
+    }
+//
+//    function submitForm(event, data)
+//	{
+//		// Create a jQuery object from the form
+//		$form = $(event.target);
+//
+//		// Serialize the form data
+//		var formData = $form.serialize();
+//
+//		// You should sterilise the file names
+//		$.each(data.files, function(key, value)
+//		{
+//			formData = formData + '&filenames[]=' + value;
+//		});
+//
+//		$.ajax({
+//			url: '/tree_generator#generate',
+//            type: 'POST',
+//            data: formData,
+//            cache: false,
+//            dataType: 'json',
+//            success: function(data, textStatus, jqXHR)
+//            {
+//            	if(typeof data.error === 'undefined')
+//            	{
+//            		// Success so call function to process the form
+//            		console.log('SUCCESS: ' + data.success);
+//            	}
+//            	else
+//            	{
+//            		// Handle errors here
+//            		console.log('ERRORS: ' + data.error);
+//            	}
+//            },
+//            error: function(jqXHR, textStatus, errorThrown)
+//            {
+//            	// Handle errors here
+//            	console.log('ERRORS: ' + textStatus);
+//            },
+//            complete: function()
+//            {
+//            	// STOP LOADING SPINNER
+//            }
+//		});
+//	}

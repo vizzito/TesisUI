@@ -32,11 +32,6 @@ function loadTreeButton(){
 			});
 	});
 
-	$("#slidertwo").slider();
-	$('#slidertwo').on('slide', function(ev) {
-		$("#sliderValLabel1").val(ev.value[0]);
-		$("#sliderValLabel2").val(ev.value[1]);
-	});
 }
 function showTree(){
 var width = 660,

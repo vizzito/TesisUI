@@ -13,13 +13,10 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require jquery-fileupload
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
 //= require bootstrap-slider
 //= require jquery.hoverIntent.min.js
 //= require jquery.mb.flipText.js
-//= require mbExtruder.js
-
 

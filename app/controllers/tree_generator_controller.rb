@@ -7,19 +7,20 @@ class TreeGeneratorController < ApplicationController
   end
 
   def generate
-
-    @params = Parametros.first
+ #   debugger
+   # data = params[:files]
+    
     bottom = params[:bottomsimil]
     top = params[:topsimil]
-    selectedFiles = params[:files]
+ #   selectedFiles = params[:files]
+    
     updateParams(bottom,top)
     
-    callService(bottom,top,selectedFiles)
+  #  callService(bottom,top,selectedFiles)
+    callService(params)
     extension = "json"
     create_file(extension,@data)
-    respond_to do |format|
-      format.json { head :ok }
-    end
+    render :json=>true
   end
 
   def updateParams(bottom,top)

@@ -7,7 +7,9 @@ gem 'bootstrap-sass'
 gem "bootstrap-slider-rails", "~> 1.9.0"
 gem 'jquery-ui-sass-rails'
 gem 'json'
-gem 'jquery-fileupload-rails', '~> 0.4.1'
+gem 'rest-client', '~> 1.6.7'
+#gem 'jquery-fileupload-rails'
+
 #gem 'less-rails'
 #gem 'therubyracer'
 
