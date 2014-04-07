@@ -17,6 +17,7 @@ class TreeGeneratorController < ApplicationController
     updateParams(bottom,top)
     
   #  callService(bottom,top,selectedFiles)
+  
     callService(params)
     extension = "json"
     create_file(extension,@data)

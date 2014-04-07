@@ -1,16 +1,3 @@
-
-//function popover(d) {
-//    serviceName = mapServices.serviceName;
-//    fileName = mapServices.fileName;
-//    fileRoute = mapServices.fileRoute;
-//	if (mapServices.map != null) {
-//		mapServices.fileName = mapServices.map[serviceName][0];
-//		mapServices.fileRoute = mapServices.map[serviceName][1];
-//		$("#FirstDiv").text(serviceName);
-//		$("#SecondDiv").text(fileName);
-//		$("#ThirdDiv").text(fileRoute);
-//		$(this).popover({
-
 $.fn.extend({
     popoverClosable: function (options) {
         var defaults = {

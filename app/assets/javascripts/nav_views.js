@@ -1,3 +1,4 @@
+var files = [];
 function loadNav(){
 	$("#slidertwo").slider();
 	$('#slidertwo').on('slide', function(ev) {

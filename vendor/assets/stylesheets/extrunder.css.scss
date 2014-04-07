@@ -384,19 +384,3 @@ background:url(../elements/extruder_voiceHover.png) no-repeat top;
             background:#fff;
             color:black;
         }
-      .files-panel{
-        border-left: 4px groove #000;
-        overflow:auto;
-        background:#eee;
-        height: 400px;
-        resize:vertical;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-     .table-hover tbody tr.selected > td {
-         background-color: #428bca;
-}

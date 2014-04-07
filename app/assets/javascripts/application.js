@@ -19,4 +19,11 @@
 //= require bootstrap-slider
 //= require jquery.hoverIntent.min.js
 //= require jquery.mb.flipText.js
+$.removeData();
 
+
+//revisar que ande bien el removedata... en chrome...
+//en firefox no anda el .each!!
+//ver el generar arbol desde los demas uqe no son invertedradial...
+//borrar archivos guardados en el server cuando termina de ejecutar
+//el selected files solo anda en inverted!

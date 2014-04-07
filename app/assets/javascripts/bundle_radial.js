@@ -2,13 +2,25 @@
 //= require common_bundle.js
 //= require popover
 
+$("html,body").scrollTop();
 
-var files = [];
+var selectedFiles = [];
+
+function isSelected(name) {
+    for (var i = 0; i < selectedFiles.length; i++) {
+        if (selectedFiles[i] == name) {
+            return true;
+        }
+    }
+    return false;
+}
 function loadRadialButton(){
 	
 	$('#generarButtonRadial').click(function(event) {
+		selectedFiles = [];
+		debugger;
 		var row = $('#files-table').find('tr');
-		var selectedFiles = [];
+		
 //		for(i=0;i<row.length;i++){
 //			if (row[i].hasClass('selected'))
 //				selectedFiles.push(row[i]);
@@ -40,28 +52,45 @@ function loadRadialButton(){
 		var data = new FormData();
 		data.append("bottomsimil", $('#sliderValLabel1').val());
 		data.append("topsimil", $('#sliderValLabel2').val());
-		
-		$.each(files, function(key, value)
-		{
-			data.append(key, value);
-		});
-		
-		$.ajax({
-            url: '/tree_generator#generate',
-            type: 'POST',
-            data: data,
-            cache: false,
-            dataType: 'json',
-            processData: false, // Don't process the files
-            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-            success: function(response) {    	 
-				         showRadial(75);
-			    },
-            error: function(jqXHR, textStatus, errorThrown)
-            {
-            	console.log('ERRORS: ' + textStatus);
-            }
-        });
+		var hasFiles = false;
+		for(var i=0;i<files.length;i++){
+			if(isSelected(files[i].name)){
+				   data.append(i, files[i]);
+				   hasFiles = true;
+				  
+				}
+		}
+//		$.each(files, function(key, value)
+//		{
+//			
+//	
+//			if(isSelected(value.name)){
+//			   data.append(key, value);
+//			   hasFiles = true;
+//			   console.log(value.name);
+//			}
+//		});
+		if(hasFiles){
+			$.ajax({
+	            url: '/tree_generator#generate',
+	            type: 'POST',
+	            data: data,
+	            cache: false,
+	            dataType: 'json',
+	            processData: false, // Don't process the files
+	            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+	            success: function(response) {    	 
+					         showRadial(75);
+				    },
+	            error: function(jqXHR, textStatus, errorThrown)
+	            {
+	            	console.log('ERRORS: ' + textStatus);
+	            }
+	        });
+			}
+		else{
+			//show message, not files selected!!!
+		}
 	});
 }
 
@@ -131,7 +160,7 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
       .text(function(d) { return d.key; })
       .on("mouseover", mouseovered)
-      .on("mouseout", mouseouted)
+      .on("mouseout", mouseouted);
 
 });
 
