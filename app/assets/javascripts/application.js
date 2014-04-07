@@ -21,7 +21,6 @@
 //= require jquery.mb.flipText.js
 $.removeData();
 
-
 //revisar que ande bien el removedata... en chrome...
 //en firefox no anda el .each!!
 //ver el generar arbol desde los demas uqe no son invertedradial...
