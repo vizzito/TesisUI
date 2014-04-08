@@ -69,6 +69,11 @@ border-radius: 10px;
   //height:500px;
 }  
 .left-panel .table-container table{
+   -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+  
  // width:100%;
  //  table-layout:fixed; 
 }
@@ -76,6 +81,7 @@ border-radius: 10px;
    height: 500px;
    max-width:300px; 
    overflow: auto;
+   cursor:pointer;
   }
 
 
