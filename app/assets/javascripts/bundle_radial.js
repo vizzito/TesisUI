@@ -15,27 +15,27 @@ function isSelected(name) {
     return false;
 }
 function loadRadialButton(){
-	
+
 	$('#generarButtonRadial').click(function(event) {
 		selectedFiles = [];
 		debugger;
 		var row = $('#files-table').find('tr');
-		
+
 //		for(i=0;i<row.length;i++){
 //			if (row[i].hasClass('selected'))
 //				selectedFiles.push(row[i]);
 //		}
-		
+
 		$('#files-table tr').each(function(){
 			if($(this).hasClass('selected'))
 				{
 				selectedFiles.push(this.innerText);
 				}
 			});
-		
+
 		//obtiene los archivos seleccionados del panel
 		filesMapToGenerate = getSelectedFiles(selectedFiles);
-		
+
 		$('.loading-indicator').hide();
 		$(document).ajaxStart(function() {
 			$('#myModal').show();
@@ -47,8 +47,8 @@ function loadRadialButton(){
 			$('#myModal').hide();
 			$('#myModal').modal('hide');
 		});
-		
-		
+
+
 		var data = new FormData();
 		data.append("bottomsimil", $('#sliderValLabel1').val());
 		data.append("topsimil", $('#sliderValLabel2').val());
@@ -57,7 +57,7 @@ function loadRadialButton(){
 			if(isSelected(files[i].name)){
 				   data.append(i, files[i]);
 				   hasFiles = true;
-				  
+
 				}
 		}
 //		$.each(files, function(key, value)
@@ -79,7 +79,7 @@ function loadRadialButton(){
 	            dataType: 'json',
 	            processData: false, // Don't process the files
 	            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-	            success: function(response) {    	 
+	            success: function(response) {
 					         showRadial(75);
 				    },
 	            error: function(jqXHR, textStatus, errorThrown)
@@ -95,7 +95,7 @@ function loadRadialButton(){
 }
 
 
-function showRadial(num){   
+function showRadial(num){
 
 var tension = num/100.0;
 var diameter = 660,
@@ -141,13 +141,13 @@ new mapperServices();
 d3.json("/tmp/files/datafile.json", function(error, classes) {
       var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes);
- 
+
   link = link.data(bundle(links))
   .enter().append("path")
-      .each(function(d) { 
-        d.source = d[0], d.target = d[d.length - 1]; 
+      .each(function(d) {
+        d.source = d[0], d.target = d[d.length - 1];
         })
-      .attr("class", "link") 
+      .attr("class", "link")
       .attr("d", line);
 
   node = node
@@ -189,7 +189,7 @@ function mouseovered(d) {
         $("#SecondDiv").text(fileName);
         $("#ThirdDiv").text(fileRoute);
 
-        $(this).popover({
+        /*$(this).popover({
 
             trigger : 'click',
             animation : true,
@@ -200,7 +200,21 @@ function mouseovered(d) {
                 return $('#popover_content_wrapper').html();
             },
             container : $("body")
-        });
+        });  */
+
+        var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
+        var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>"
+        var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
+        var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
+
+        $("#ServiceData").empty();
+        $("#modalWSDLFileTitle").empty();
+
+        $("#modalWSDLFileTitle").append(serviceName);
+        $("#ServiceData").append(nameHTML);
+        $("#ServiceData").append(fileHTML);
+        $("#ServiceData").append(pathHTML);
+        $("#ServiceData").append(verWSDLButtonHTML);
     }
 
 	}

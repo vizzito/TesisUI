@@ -49,6 +49,22 @@ function loadFilesPanel(){
 			 }
 		}
 	}
+	
+	$("#select-all").on('click',function(){
+		$("#files-table tr").each(function() {
+			$(this).addClass("selected");
+			});
+	});
+	$("#select-none").on('click',function(){
+		$("#files-table tr").each(function() {
+			$(this).removeClass("selected");
+			});
+	});
+	$("#select-inverted").on('click',function(){
+		$("#files-table tr").each(function() {
+			$(this).toggleClass("selected");
+			});
+	});
 		
 
 }
