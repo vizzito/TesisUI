@@ -26,3 +26,5 @@ $.removeData();
 //ver el generar arbol desde los demas uqe no son invertedradial...
 //borrar archivos guardados en el server cuando termina de ejecutar
 //el selected files solo anda en inverted!
+// absolute path de los archivos... ver como manejar eso, archivo propiedades maybe
+// definir logica para manejar archivos de diferentes reuqest... sincronizar, crea carpetas individuales.. etc

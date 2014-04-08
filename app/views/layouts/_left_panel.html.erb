@@ -1,15 +1,24 @@
 <div class ="panel-container">
 
-<input style="display:none;" type="file" name="file_upload" id="file_upload" multiple>
+	<input style="display:none;" type="file" name="file_upload" id="file_upload" multiple>
 	<div class = "row table-container">
-	<table id="files-table" class="table table-striped table-hover table-responsive">
-		<thead>		
-				<th class = "th-width">Files:				
-	            <span id = "btn-add" class = "btn-table btn-add"></span>
-	            <span class = "btn-table btn-delete"></span>
-	            </th>
-		</thead>
-		<tbody></tbody>
-	</table>
+		<table id="files-table" class="table table-striped table-hover table-responsive">
+			<thead>
+				<th class = "th-width">
+				<span class="dropdown">
+					<button type="button" role="checkbox" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						Select <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<a id="select-all">All</a>
+							<a id="select-none" >None</a>
+							<a id="select-inverted" >Invert Selection</a>
+						</li>
+					</ul>
+				</span><span id = "btn-add" class = "btn-table btn-add"></span><span class = "btn-table btn-delete"></span></th>
+			</thead>
+			<tbody></tbody>
+		</table>
 	</div>
 </div>
