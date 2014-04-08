@@ -20,7 +20,7 @@
 //= require jquery.hoverIntent.min.js
 //= require jquery.mb.flipText.js
 $.removeData();
-
+// comentario de prueba
 //revisar que ande bien el removedata... en chrome...
 //en firefox no anda el .each!!
 //ver el generar arbol desde los demas uqe no son invertedradial...
