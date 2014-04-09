@@ -7,7 +7,8 @@
 /spec/reports/
 /test/tmp/
 /test/version_tmp/
-/tmp/
+/tmp
+/tmp/*
 db/*.sqlite3
 log/*.log
 tmp/**/*
