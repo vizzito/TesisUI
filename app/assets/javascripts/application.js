@@ -19,6 +19,7 @@
 //= require bootstrap-slider
 //= require jquery.hoverIntent.min.js
 //= require jquery.mb.flipText.js
+$.ajaxSetup({ cache: false });
 $.removeData();
 // comentario de prueba
 //revisar que ande bien el removedata... en chrome...

@@ -15,7 +15,7 @@ function isSelected(name) {
     return false;
 }
 function loadRadialButton(){
-
+debugger;
 	$('#generarButtonRadial').click(function(event) {
 		selectedFiles = [];
 		debugger;
@@ -34,7 +34,7 @@ function loadRadialButton(){
 			});
 
 		//obtiene los archivos seleccionados del panel
-		filesMapToGenerate = getSelectedFiles(selectedFiles);
+		//filesMapToGenerate = getSelectedFiles(selectedFiles);
 
 		$('.loading-indicator').hide();
 		$(document).ajaxStart(function() {
@@ -203,7 +203,7 @@ function mouseovered(d) {
         });  */
 
         var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
-        var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>"
+        var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>";
         var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
         var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
 

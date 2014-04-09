@@ -27,6 +27,31 @@ function loadFilesPanel(){
     $("#btn-add").on('click',function(){
     	 $("#file_upload").click();    	   
     });
+    
+    $("#btn-delete").on('click',function(){
+    	$('#files-table tr').each(function(){
+			if($(this).hasClass('selected'))
+				{
+				for(var i=0;i<files.length;i++){
+					if(this.innerText==files[i].name){
+						 files.splice(i, 1);
+						}
+				}
+				
+				}
+			});
+    	updateFileSet(files);
+   });
+    
+    function updateFileSet(files){
+    	$("#files-table tbody").html("");
+    	for(var i=0;i<files.length;i++){
+			// if(contains(files,newFiles[i])==false){
+			//	 files.push(newFiles[i]);
+				 $("#files-table tbody").append('<tr><td  class = "th-width">'+files[i].name+'</td></tr>');
+			 //}
+		}
+    }
  
 	$('#file_upload').on('change', prepareUpload);
 	function contains(a, obj) {
