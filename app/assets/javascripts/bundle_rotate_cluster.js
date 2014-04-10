@@ -1,40 +1,10 @@
 function loadClusterButton(){
 	$('#generarButtonCluster').click(function(event) {
-		$('.loading-indicator').hide();
-		$(document).ajaxStart(function() {
-			$('#myModal').show();
-			$('#myModal').modal({backdrop: 'static',
-					  keyboard: false,
-					  show: true
-			});
-		}).ajaxStop(function() {
-			$('#myModal').hide();
-			$('#myModal').modal('hide');
-		});
-		
-		$.ajax({
-			type: "POST",
-			    url: "/tree_generator#generate",
-			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
-			    	   topsimil:  $('#sliderValLabel2').val()},
-			    dataType: "text",
-
-			    success: function(response) {    	 
-			    	showRotateCluster();
-			    },
-			    error: function(data){
-			    alert("fail");
-
-			    }
-			});
+		generateTreeParams("rotate");
 	});
-
 }
 
-
-
 function showRotateCluster(){
-
 var w = 860,
     h = 580,
     rx = w / 2,
@@ -94,55 +64,6 @@ d3.json("/tmp/files/datafile.json", function(error,classes) {
       .on("mouseout", mouseouted);
 });
 
-//d3.select(window)
-//    .on("mousemove", mousemove)
-//    .on("mouseup", mouseup);
-//
-//function mouse(e) {
-//  return [e.pageX - rx, e.pageY - ry];
-//}
-//
-//function mousedown() {
-//  m0 = mouse(d3.event);
-//  d3.event.preventDefault();
-//}
-//
-//function mousemove() {
-//  if (m0) {
-//    var m1 = mouse(d3.event),
-//        dm = Math.atan2(cross(m0, m1), dot(m0, m1)) * 180 / Math.PI,
-//        tx = "translate3d(0," + (ry - rx) + "px,0)rotate3d(0,0,0," + dm + "deg)translate3d(0," + (rx - ry) + "px,0)";
-//    svg
-//        .style("-moz-transform", tx)
-//        .style("-ms-transform", tx)
-//        .style("-webkit-transform", tx);
-//  }
-//}
-//
-//function mouseup() {
-//  if (m0) {
-//    var m1 = mouse(d3.event),
-//        dm = Math.atan2(cross(m0, m1), dot(m0, m1)) * 180 / Math.PI,
-//        tx = "rotate3d(0,0,0,0deg)";
-//
-//    rotate += dm;
-//    if (rotate > 360) rotate -= 360;
-//    else if (rotate < 0) rotate += 360;
-//    m0 = null;
-//
-//    svg
-//        .style("-moz-transform", tx)
-//        .style("-ms-transform", tx)
-//        .style("-webkit-transform", tx);
-//
-//    vis
-//        .attr("transform", "translate(" + rx + "," + ry + ")rotate(" + rotate + ")")
-//      .selectAll("g.node text")
-//        .attr("dx", function(d) { return (d.x + rotate) % 360 < 180 ? 8 : -8; })
-//        .attr("text-anchor", function(d) { return (d.x + rotate) % 360 < 180 ? "start" : "end"; })
-//        .attr("transform", function(d) { return (d.x + rotate) % 360 < 180 ? null : "rotate(180)"; });
-//  }
-//}
 function mouseovered(d) {
 	  node
 	      .each(function(n) { n.target = n.source = false; });

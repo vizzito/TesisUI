@@ -1,38 +1,7 @@
-//= require d3.js
-//= require common_bundle.js
-
 function loadCollapseButton(){
 	$('#generarButtonCollapse').click(function(event) {
-		$('.loading-indicator').hide();
-		$(document).ajaxStart(function() {
-			$('#myModal').show();
-			$('#myModal').modal({backdrop: 'static',
-					  keyboard: false,
-					  show: true
-			});
-		}).ajaxStop(function() {
-			$('#myModal').hide();
-			$('#myModal').modal('hide');
-		});
-		
-		$.ajax({
-			type: "POST",
-			    url: "/tree_generator#generate",
-			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
-			    	   topsimil:  $('#sliderValLabel2').val()},
-			    dataType: "text",
-
-			    success: function(response) {    	 
-			    	showCollapse();
-			    },
-			    error: function(data){
-			    alert("fail");
-
-			    }
-			});
+		generateTreeParams("collapse");
 	});
-
-	
 }
 function showCollapse(){
 
@@ -67,14 +36,9 @@ function showCollapse(){
 	});
 
 	function update(source) {
-
 	  // Compute the flattened node list. TODO use d3.layout.hierarchy.
 	  var nodes = tree.nodes(root);
-		
-
-    //  var nodes = cluster.nodes(packages.root(root));
-		  
-	  var height = Math.max(500, nodes.length * barHeight + margin.top + margin.bottom);
+      var height = Math.max(500, nodes.length * barHeight + margin.top + margin.bottom);
 	 
 	  d3.select("svg")
 	      .attr("height", height);

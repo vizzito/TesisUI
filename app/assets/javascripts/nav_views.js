@@ -7,23 +7,18 @@ function loadNav(){
 	});
 	
 $("#inverted_nav").on('click',function(){
-	console.log("llama");
 	callAjax('inverted_radial_layout');
 });
 $("#bundle_nav").on('click',function(){
-	console.log("llama");
  	callAjax('bundle_layout');
 });
 $("#tree_nav").on('click',function(){
-	console.log("llama");
 	callAjax('tree_layout');
 });
 $("#rotate_nav").on('click',function(){
-	console.log("llama");
 	callAjax('rotate_cluster_layout');
 });
 $("#collapse_nav").on('click',function(){
-	console.log("llama");
 	callAjax('collapse_tree_layout');
 });
 }

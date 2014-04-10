@@ -1,5 +1,77 @@
-//= require d3.js
 
+function generateTreeParams(view,tension) {
+	selectedFiles = [];
+	var row = $('#files-table').find('tr');
+	$('#files-table tr').each(function() {
+		if ($(this).hasClass('selected')) {
+			selectedFiles.push(this.innerText);
+		}
+	});
+
+	var data = new FormData();
+	data.append("bottomsimil", $('#sliderValLabel1').val());
+	data.append("topsimil", $('#sliderValLabel2').val());
+	var hasFiles = false;
+	for (var i = 0; i < files.length; i++) {
+		if (isSelected(files[i].name)) {
+			data.append(i, files[i]);
+			hasFiles = true;
+		}
+	}
+	if (hasFiles) {
+		$.ajax({
+			url : '/tree_generator#generate',
+			type : 'POST',
+			data : data,
+			cache : false,
+			dataType : 'json',
+			processData : false, // Don't process the files
+			contentType : false, // Set content type to false as jQuery will
+									// tell the server its a query string
+									// request
+			headers : {
+				'Cache-Control' : 'max-age=0'
+			},
+			success : function(response) {
+				switch (view) {
+				case "radial":
+					showRadial(tension);
+					break;
+				case "bundle":
+					showBundle();
+					break;
+				case "collapse":
+					showCollapse();
+					break;
+				case "rotate":
+					showRotateCluster();
+					break;
+				case "tree":
+					showTree();
+					break;
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log('ERRORS: ' + textStatus);
+			}
+		});
+	} else {
+		// show message, not files selected!!!
+	}
+}
+
+$('.loading-indicator').hide();
+$(document).ajaxStart(function() {
+	$('#myModal').show();
+	$('#myModal').modal({
+		backdrop : 'static',
+		keyboard : false,
+		show : true
+	});
+}).ajaxStop(function() {
+	$('#myModal').hide();
+	$('#myModal').modal('hide');
+});
 
 var packages = {
 
@@ -11,13 +83,13 @@ var packages = {
 			var node = map[name], i;
 			if (!node) {
 				node = map[name] = data || {
-					//name : realname,
-					name:name,
+					// name : realname,
+					name : name,
 					children : []
 				};
 				if (name.length) {
 					node.parent = find(name.substring(0, i = name
-							.lastIndexOf(".")),null,realname);
+							.lastIndexOf(".")), null, realname);
 					node.parent.children.push(node);
 					node.key = realname;
 				}
