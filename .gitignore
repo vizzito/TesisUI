@@ -12,7 +12,7 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
-
+tmp/files/*
 
 ## Specific to RubyMotion:
 .dat*
