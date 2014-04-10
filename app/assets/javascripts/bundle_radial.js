@@ -103,13 +103,13 @@ function mouseovered(d) {
 
     var serviceName = mapServices.serviceName;
     var fileName = mapServices.fileName;
-    var fileRoute = mapServices.fileRoute;
+//    var fileRoute = mapServices.fileRoute;
     if (mapServices.map != null) {
-        mapServices.fileName = mapServices.map[serviceName][0];
-        mapServices.fileRoute = mapServices.map[serviceName][1];
+        mapServices.fileName = mapServices.map[serviceName];
+      //  mapServices.fileRoute = mapServices.map[serviceName];
         $("#FirstDiv").text(serviceName);
         $("#SecondDiv").text(fileName);
-        $("#ThirdDiv").text(fileRoute);
+     //   $("#ThirdDiv").text(fileRoute);
 
         /*$(this).popover({
 
@@ -126,7 +126,7 @@ function mouseovered(d) {
 
         var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
         var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>";
-        var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
+       // var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
         var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
 
         $("#ServiceData").empty();
@@ -135,7 +135,7 @@ function mouseovered(d) {
         $("#modalWSDLFileTitle").append(serviceName);
         $("#ServiceData").append(nameHTML);
         $("#ServiceData").append(fileHTML);
-        $("#ServiceData").append(pathHTML);
+     //   $("#ServiceData").append(pathHTML);
         $("#ServiceData").append(verWSDLButtonHTML);
     }
 

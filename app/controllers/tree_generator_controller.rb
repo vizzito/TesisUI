@@ -19,8 +19,8 @@ class TreeGeneratorController < ApplicationController
   #  callService(bottom,top,selectedFiles)
   
     callService(params)
-    extension = "json"
-    create_file(extension,@data)
+    create_data_file(@dataFile)
+    create_data_map(@dataMap)
     render :json=>true
   end
 
