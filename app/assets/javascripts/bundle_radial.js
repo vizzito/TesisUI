@@ -1,7 +1,3 @@
-//= require d3.js
-//= require common_bundle.js
-//= require popover
-
 $("html,body").scrollTop();
 
 var selectedFiles = [];
@@ -14,86 +10,12 @@ function isSelected(name) {
     }
     return false;
 }
+
 function loadRadialButton(){
-debugger;
 	$('#generarButtonRadial').click(function(event) {
-		selectedFiles = [];
-		debugger;
-		var row = $('#files-table').find('tr');
-
-//		for(i=0;i<row.length;i++){
-//			if (row[i].hasClass('selected'))
-//				selectedFiles.push(row[i]);
-//		}
-
-		$('#files-table tr').each(function(){
-			if($(this).hasClass('selected'))
-				{
-				selectedFiles.push(this.innerText);
-				}
-			});
-
-		//obtiene los archivos seleccionados del panel
-		//filesMapToGenerate = getSelectedFiles(selectedFiles);
-
-		$('.loading-indicator').hide();
-		$(document).ajaxStart(function() {
-			$('#myModal').show();
-			$('#myModal').modal({backdrop: 'static',
-					  keyboard: false,
-					  show: true
-			});
-		}).ajaxStop(function() {
-			$('#myModal').hide();
-			$('#myModal').modal('hide');
-		});
-
-
-		var data = new FormData();
-		data.append("bottomsimil", $('#sliderValLabel1').val());
-		data.append("topsimil", $('#sliderValLabel2').val());
-		var hasFiles = false;
-		for(var i=0;i<files.length;i++){
-			if(isSelected(files[i].name)){
-				   data.append(i, files[i]);
-				   hasFiles = true;
-
-				}
-		}
-//		$.each(files, function(key, value)
-//		{
-//			
-//	
-//			if(isSelected(value.name)){
-//			   data.append(key, value);
-//			   hasFiles = true;
-//			   console.log(value.name);
-//			}
-//		});
-		if(hasFiles){
-			$.ajax({
-	            url: '/tree_generator#generate',
-	            type: 'POST',
-	            data: data,
-	            cache: false,
-	            dataType: 'json',
-	            processData: false, // Don't process the files
-	            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-	            success: function(response) {
-					         showRadial(75);
-				    },
-	            error: function(jqXHR, textStatus, errorThrown)
-	            {
-	            	console.log('ERRORS: ' + textStatus);
-	            }
-	        });
-			}
-		else{
-			//show message, not files selected!!!
-		}
+		generateTreeParams("radial",$('#sliderValLabel1').val());
 	});
 }
-
 
 function showRadial(num){
 

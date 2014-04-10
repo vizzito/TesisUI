@@ -1,35 +1,6 @@
-//= require d3.js
-//= require common_bundle.js
-
 function loadTreeButton(){
 	$('#generarButtonTree').click(function(event) {
-		$('.loading-indicator').hide();
-		$(document).ajaxStart(function() {
-			$('#myModal').show();
-			$('#myModal').modal({backdrop: 'static',
-					  keyboard: false,
-					  show: true
-			});
-		}).ajaxStop(function() {
-			$('#myModal').hide();
-			$('#myModal').modal('hide');
-		});
-		
-		$.ajax({
-			type: "POST",
-			    url: "/tree_generator#generate",
-			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
-			    	   topsimil:  $('#sliderValLabel2').val()},
-			    dataType: "text",
-
-			    success: function(response) {    	 
-				         showTree();
-			    },
-			    error: function(data){
-			    alert("fail");
-
-			    }
-			});
+		generateTreeParams("tree");
 	});
 
 }
