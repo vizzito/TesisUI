@@ -1,6 +1,6 @@
 // se va a generar dinamicamente al igual q mapServices, el json no va mas!
-var mapFiles =  {'archivo1.wsdl': '/home/panther/workspace/ServiceClusterer/botomUp1/AltadeRelaciones.wsdl'
-				,'archivo2.wsdl': '/home/panther/workspace/ServiceClusterer/botomUp1/AltadeRelaciones.wsdl'};  
+//var mapFiles =  {'archivo1.wsdl': '/home/panther/workspace/ServiceClusterer/botomUp1/AltadeRelaciones.wsdl'
+//				,'archivo2.wsdl': '/home/panther/workspace/ServiceClusterer/botomUp1/AltadeRelaciones.wsdl'};  
 var mapServices;
 function mapperServices() {
 	//mapFiles = getMap();

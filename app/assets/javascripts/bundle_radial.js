@@ -49,6 +49,17 @@ var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
 
+//var list = JSON.parse("/tmp/files/map.json");
+//var request = new XMLHttpRequest();
+//request.open("GET", "/tmp/files/map.json", false);
+//request.send(null);
+//var mapFiles = JSON.parse(request.responseText);
+
+//esto se va a hacer dinamicamente desde la carga de los archivos de la UI
+new mapperServices();
+//////////////////////////////////////////////
+
+
 d3.json("/tmp/files/datafile.json", function(error, classes) {
       var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes);

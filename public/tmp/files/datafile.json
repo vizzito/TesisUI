@@ -1,1 +1,1 @@
-[{"name":"ObtenerPersonaxCUIP","nameKey":"2.7","imports":["5.11"]},{"name":"ObtenerDatosdeSentencia","nameKey":"3.8","imports":[]},{"name":"ObtenerInfSumariaDecJurada","nameKey":"3.9","imports":[]},{"name":"RealizaReversion","nameKey":"4.10","imports":[]},{"name":"ObtenerPersonaxCUIL","nameKey":"5.11","imports":["2.7"]},{"name":"ListarPersxDoc","nameKey":"6.12","imports":[]}]
+[{"name":"ObtenerDatosdeSentencia","nameKey":"2.5","imports":[]},{"name":"ObtenerPersonaxCUIL","nameKey":"3.6","imports":[]},{"name":"ActualizarPeriodosFaltantes","nameKey":"4.7","imports":[]}]
