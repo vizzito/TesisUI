@@ -43,7 +43,7 @@ var svg = d3.select("#panel-radial").append("svg")
     .attr("width", 900)
     .attr("height", 750)
     .append("g")
-    .attr("transform", "translate(" + 425 + "," + 365 + ")");
+    .attr("transform", "translate(" + 395 + "," + 365 + ")");
 
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");

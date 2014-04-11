@@ -29,7 +29,7 @@ var vis = svg.append("svg:svg")
     .attr("width", w)
     .attr("height", w)
   .append("svg:g")
-    .attr("transform", "translate(" + rx + "," + 350 + ")");
+    .attr("transform", "translate(" + 400 + "," + 350 + ")");
 
 vis.append("svg:path")
     .attr("class", "arc")

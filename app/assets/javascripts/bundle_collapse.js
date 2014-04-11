@@ -6,7 +6,7 @@ function loadCollapseButton(){
 function showCollapse(){
 
 	var margin = {top: 30, right: 20, bottom: 30, left: 20},
-	    width = 960 - margin.left - margin.right,
+	    width = 800 - margin.left - margin.right,
 	    barHeight = 20,
 	    barWidth = width * .8;
 	//var width = 660,
