@@ -36,10 +36,11 @@ function showCollapse(){
 	});
 
 	function update(source) {
+      mapperServices();
 	  // Compute the flattened node list. TODO use d3.layout.hierarchy.
 	  var nodes = tree.nodes(root);
       var height = Math.max(500, nodes.length * barHeight + margin.top + margin.bottom);
-	 
+
 	  d3.select("svg")
 	      .attr("height", height);
 
@@ -71,7 +72,7 @@ function showCollapse(){
 	  nodeEnter.append("text")
 	      .attr("dy", 3.5)
 	      .attr("dx", 5.5)
-	      .text(function(d) { return d.name; });
+	      .text(function(d) { return d.name; }).on("click", nodeShowDataOnClick);
 
 	  // Transition nodes to their new position.
 	  nodeEnter.transition()

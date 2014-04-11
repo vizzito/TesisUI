@@ -20,9 +20,9 @@ function loadRadialButton(){
 function showRadial(num){
 
 var tension = num/100.0;
-var diameter = 660,
+var diameter = 650,
     radius = diameter / 2,
-    innerRadius = radius - 120;
+    innerRadius = radius - 100;
 
 var cluster = d3.layout.cluster()
     .size([360, innerRadius])
@@ -40,10 +40,10 @@ var line = d3.svg.line.radial()
 
 $("#panel-radial").html("");
 var svg = d3.select("#panel-radial").append("svg")
-    .attr("width", diameter)
-    .attr("height", diameter)
-  .append("g")
-    .attr("transform", "translate(" + radius + "," + radius + ")");
+    .attr("width", 900)
+    .attr("height", 750)
+    .append("g")
+    .attr("transform", "translate(" + 425 + "," + 365 + ")");
 
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
@@ -56,7 +56,7 @@ var link = svg.append("g").selectAll(".link"),
 //var mapFiles = JSON.parse(request.responseText);
 
 //esto se va a hacer dinamicamente desde la carga de los archivos de la UI
-new mapperServices();
+mapperServices();
 //////////////////////////////////////////////
 
 
@@ -82,8 +82,8 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
       .text(function(d) { return d.key; })
       .on("mouseover", mouseovered)
-      .on("mouseout", mouseouted);
-
+      .on("mouseout", mouseouted)
+      .on("click", nodeShowDataOnClick);
 });
 
 function mouseovered(d) {
@@ -100,44 +100,6 @@ function mouseovered(d) {
     node
       .classed("node--target", function(n) { return n.target; })
       .classed("node--source", function(n) { return n.source; });
-
-    var serviceName = mapServices.serviceName;
-    var fileName = mapServices.fileName;
-//    var fileRoute = mapServices.fileRoute;
-    if (mapServices.map != null) {
-        mapServices.fileName = mapServices.map[serviceName];
-      //  mapServices.fileRoute = mapServices.map[serviceName];
-        $("#FirstDiv").text(serviceName);
-        $("#SecondDiv").text(fileName);
-     //   $("#ThirdDiv").text(fileRoute);
-
-        /*$(this).popover({
-
-            trigger : 'click',
-            animation : true,
-            delay : 0,
-            title : serviceName + '<button type="button" class="close" onclick="$(&quot;body>.popover&quot;).hide();">&times;</button>',
-            html: 'true',
-            content : function() {
-                return $('#popover_content_wrapper').html();
-            },
-            container : $("body")
-        });  */
-
-        var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
-        var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>";
-       // var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
-        var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
-
-        $("#ServiceData").empty();
-        $("#modalWSDLFileTitle").empty();
-
-        $("#modalWSDLFileTitle").append(serviceName);
-        $("#ServiceData").append(nameHTML);
-        $("#ServiceData").append(fileHTML);
-     //   $("#ServiceData").append(pathHTML);
-        $("#ServiceData").append(verWSDLButtonHTML);
-    }
 
 	}
 

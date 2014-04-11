@@ -1,10 +1,11 @@
 function loadBundleButton(){
-	
+
 	$('#generarButtonBundle').click(function(event) {
 		generateTreeParams("bundle");
 	});
 }
 function showBundle(){
+mapperServices();
 var margin = {top: 40, right: 40, bottom: 40, left: -150},
     width = 500 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
@@ -23,9 +24,9 @@ var line = d3.svg.line()
     .y(function(d) { return d.x; });
 $("#panel-bundle").html("");
 var svg = d3.select("#panel-bundle").append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", 800)
     .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+    .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var link = svg.append("g").selectAll(".link"),
@@ -36,8 +37,8 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       links = packages.imports(nodes);
 
   link = link.data(bundle(links))
-    .enter().append("path").each(function(d) { 
-        d.source = d[0], d.target = d[d.length - 1]; 
+    .enter().append("path").each(function(d) {
+        d.source = d[0], d.target = d[d.length - 1];
     })
       .attr("class", "link")
       .attr("d", line);
@@ -51,7 +52,8 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .attr("dy", ".31em")
       .text(function(d) { return d.key; })
       .on("mouseover", mouseovered)
-      .on("mouseout", mouseouted);
+      .on("mouseout", mouseouted)
+      .on("click", nodeShowDataOnClick);
 
 });
 function mouseovered(d) {

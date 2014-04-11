@@ -1,12 +1,4 @@
 <div class ="panel-container">
-  <div class = "row table-container">
-    <h5>Service Info: </h5>
-    <div id="ServiceData"></div>
-    <hr/>
-  </div>
-</div>
-
-<div class ="panel-container">
 <input style="display:none;" type="file" name="file_upload" id="file_upload" multiple>
 	<div class = "row table-container">
 	<table id="files-table" class="table table-striped table-hover table-responsive">
@@ -14,7 +6,7 @@
  				<th class = "th-width">
  				<span class="dropdown">
  					<button type="button" role="checkbox" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
- 						Select <span class="caret"></span>
+                      <i class="fa fa-list"></i> Select <span class="caret"></span>
  					</button>
  					<ul class="dropdown-menu" role="menu">
  						<li>
@@ -24,10 +16,21 @@
  						</li>
  					</ul>
  				</span>
- 				<span id = "btn-add" class = "btn-table btn-add"></span>
- 				<span id = "btn-delete" class = "btn-table btn-delete"></span></th>
+                  <div class="btn-group pull-right">
+                    <button id="btn-add" class="btn btn-success"><i class="fa fa-plus-square-o"></i> Add</button>
+                    <button id="btn-delete" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button>
+                  </div>
+                </th>
  			</thead>
  			<tbody></tbody>
  		</table>
  </div>
+</div>
+
+<div class ="panel-container">
+  <div class = "row table-container">
+    <h5 class="text-primary"><i class="fa fa-info-circle"></i></span> Service Info: </h5>
+    <div id="ServiceData"></div>
+    <hr/>
+  </div>
 </div>

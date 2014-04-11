@@ -93,3 +93,32 @@ function loadFilesPanel(){
 		
 
 }
+
+function nodeShowDataOnClick(d){
+    mapServices.serviceName = d.name;
+    var serviceName = mapServices.serviceName;
+    if (mapServices.map != null) {
+        mapServices.fileName = mapServices.map[serviceName];
+        mapServices.fileRoute = mapServices.map[serviceName];
+
+        var fileName = mapServices.fileName;
+        var fileRoute = mapServices.fileRoute;
+
+        var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
+        var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>"
+        var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
+        var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
+
+        $("#ServiceData").empty();
+        $("#modalWSDLFileTitle").empty();
+        $("#modalWSDLFileBody").empty();
+
+        $("#ServiceData").append(nameHTML);
+        $("#ServiceData").append(fileHTML);
+        $("#ServiceData").append(pathHTML);
+        $("#ServiceData").append(verWSDLButtonHTML);
+
+        $("#modalWSDLFileTitle").append(fileName);
+        $("#modalWSDLFileBody").append("aca va el contenido del wsdl");
+    }
+}
