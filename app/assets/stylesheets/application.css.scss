@@ -220,3 +220,11 @@ section {
   background-color: rgba(255,255,255, .23);
   border-bottom-color: transparent;
 }
+
+#editor {
+  position: absolute;
+  width: 860px;
+  height: 400px;
+}
+
+.modal-body-editor { height: 425px; }

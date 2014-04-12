@@ -119,6 +119,17 @@ function nodeShowDataOnClick(d){
         $("#ServiceData").append(verWSDLButtonHTML);
 
         $("#modalWSDLFileTitle").append(fileName);
-        $("#modalWSDLFileBody").append("aca va el contenido del wsdl");
+
+        editor.setShowPrintMargin(false);
+        editor.setReadOnly(false);
+        editor.setValue("");
+        editor.setValue("aca va el contenido del wsdl " + fileName);
+        editor.setReadOnly(true);
+        editor.focus();
+
+        $('#modalWSDLFile').on('shown.bs.modal', function (e) {
+            editor.resize();
+        })
+
     }
 }

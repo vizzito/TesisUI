@@ -42,7 +42,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title"><i class="fa fa-file-text-o"></i> <i id="modalWSDLFileTitle"></i></h4>
       </div>
-        <div class="modal-body" id="modalWSDLFileBody">
+      <div class="modal-body modal-body-editor">
+          <div id="editor" id="modalWSDLFileBody"></div>
+          <script src="ace-editor/ace.js" type="text/javascript" charset="utf-8"></script>
+          <script src="ace-editor/mode-xml.js" type="text/javascript" charset="utf-8"></script>
+          <script>
+              var editor = ace.edit("editor");
+              var XMLMode = require("ace/mode/xml").Mode;
+              editor.getSession().setMode(new XMLMode());
+          </script>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
