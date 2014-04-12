@@ -5,6 +5,7 @@ function loadClusterButton(){
 }
 
 function showRotateCluster(){
+mapperServices();
 var w = 860,
     h = 580,
     rx = w / 2,
@@ -22,13 +23,13 @@ var diagonal = d3.svg.diagonal.radial()
 $("#panel-cluster").html("");
 var svg = d3.select("#panel-cluster").append("div")
     .style("width", w + "px")
-    .style("height", w + "px");
+    .style("height", 700 + "px");
 
 var vis = svg.append("svg:svg")
     .attr("width", w)
     .attr("height", w)
   .append("svg:g")
-    .attr("transform", "translate(" + rx + "," + ry + ")");
+    .attr("transform", "translate(" + 400 + "," + 350 + ")");
 
 vis.append("svg:path")
     .attr("class", "arc")
@@ -61,7 +62,8 @@ d3.json("/tmp/files/datafile.json", function(error,classes) {
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
       .attr("transform", function(d) { return d.x < 180 ? null : "rotate(180)"; })
       .text(function(d) { return d.name; }).on("mouseover", mouseovered)
-      .on("mouseout", mouseouted);
+      .on("mouseout", mouseouted)
+      .on("click", nodeShowDataOnClick);
 });
 
 function mouseovered(d) {

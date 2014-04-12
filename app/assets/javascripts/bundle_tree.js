@@ -5,6 +5,7 @@ function loadTreeButton(){
 
 }
 function showTree(){
+mapperServices();
 var width = 660,
     height = 400;
 
@@ -43,7 +44,7 @@ d3.json("/tmp/files/datafile.json", function(error, root) {
       .attr("dx", function(d) { return d.children ? -8 : 8; })
       .attr("dy", 3)
       .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-      .text(function(d) { return d.name; });
+      .text(function(d) { return d.name; }).on("click", nodeShowDataOnClick);
 });
 
 d3.select(self.frameElement).style("height", height + "px");

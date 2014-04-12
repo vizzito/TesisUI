@@ -9,7 +9,7 @@ function mapperServices() {
 		var request = new XMLHttpRequest();
 		request.open("GET", "/tmp/files/mapfile.json", false);
 		request.send(null);
-		mapping = JSON.parse(request.responseText);
+		var mapping = JSON.parse(request.responseText);
 		mapServices = new Map(mapping,null,null); 
 	} else
 		return mapServices;
