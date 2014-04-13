@@ -144,14 +144,16 @@ function nodeShowDataOnClick(d){
         reader.readAsArrayBuffer(f);
         */
 
-        editor.setShowPrintMargin(false);
+
         editor.setReadOnly(false);
         editor.setValue("");
-        editor.setValue(f.content);
+        editor.setValue(f.content, -1);
         editor.setReadOnly(true);
+        editor.scrollToLine(0);
         editor.focus();
 
         $('#modalWSDLFile').on('shown.bs.modal', function (e) {
+
             editor.resize();
         })
 
