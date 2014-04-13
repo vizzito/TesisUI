@@ -20,6 +20,9 @@
 //= require jquery.hoverIntent.min.js
 //= require jquery.mb.flipText.js
 //= require d3.js
+//= require ace/ace
+//= require ace/mode-xml.js
+//= require ace/theme-monokai.js
 
 $.ajaxSetup({ cache: false });
 $.removeData();
