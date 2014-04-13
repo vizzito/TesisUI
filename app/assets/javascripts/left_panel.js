@@ -49,7 +49,7 @@ function loadFilesPanel(){
 			// if(contains(files,newFiles[i])==false){
 			//	 files.push(newFiles[i]);
 				 $("#files-table tbody").append('<tr><td  class = "th-width">'+files[i].name+'</td></tr>');
-			 //}
+			//}
 		}
     }
  
@@ -69,8 +69,18 @@ function loadFilesPanel(){
 		newFiles = event.target.files;
 		for(var i=0;i<newFiles.length;i++){
 			 if(contains(files,newFiles[i])==false){
-				 files.push(newFiles[i]);
-				 $("#files-table tbody").append('<tr><td  class = "th-width">'+newFiles[i].name+'</td></tr>');
+                 var func = function (f){
+                     files.push(f);
+                     var reader = new FileReader();
+
+                     reader.addEventListener("loadend", function() {
+                         files[files.indexOf(f)].content = reader.result;
+                     });
+                     reader.readAsText(f);
+
+                     $("#files-table tbody").append('<tr><td  class = "th-width">'+f.name+'</td></tr>');
+                 }
+                 func(newFiles[i]);
 			 }
 		}
 	}
@@ -106,8 +116,8 @@ function nodeShowDataOnClick(d){
 
         var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
         var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>"
-        var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
-        var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
+        //var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div>";
+        var verWSDLButtonHTML = '<hr/><button class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
 
         $("#ServiceData").empty();
         $("#modalWSDLFileTitle").empty();
@@ -115,19 +125,35 @@ function nodeShowDataOnClick(d){
 
         $("#ServiceData").append(nameHTML);
         $("#ServiceData").append(fileHTML);
-        $("#ServiceData").append(pathHTML);
+        //$("#ServiceData").append(pathHTML);
         $("#ServiceData").append(verWSDLButtonHTML);
 
         $("#modalWSDLFileTitle").append(fileName);
 
-        editor.setShowPrintMargin(false);
+        var f = null;
+        if (files != undefined)
+            for (var i = 0; i < files.length; i++)
+                if (files[i].name == fileName)
+                    f = files[i];
+
+
+        /*var reader = new FileReader();
+        reader.addEventListener("loadend", function() {
+            editor.setValue(reader.result);
+        });
+        reader.readAsArrayBuffer(f);
+        */
+
+
         editor.setReadOnly(false);
         editor.setValue("");
-        editor.setValue("aca va el contenido del wsdl " + fileName);
+        editor.setValue(f.content, -1);
         editor.setReadOnly(true);
+        editor.scrollToLine(0);
         editor.focus();
 
         $('#modalWSDLFile').on('shown.bs.modal', function (e) {
+
             editor.resize();
         })
 

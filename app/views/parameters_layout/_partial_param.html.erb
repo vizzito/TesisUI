@@ -44,12 +44,12 @@
       </div>
       <div class="modal-body modal-body-editor">
           <div id="editor" id="modalWSDLFileBody"></div>
-          <script src="ace-editor/ace.js" type="text/javascript" charset="utf-8"></script>
-          <script src="ace-editor/mode-xml.js" type="text/javascript" charset="utf-8"></script>
           <script>
               var editor = ace.edit("editor");
               var XMLMode = require("ace/mode/xml").Mode;
+              editor.setTheme("ace/theme/ambiance");
               editor.getSession().setMode(new XMLMode());
+              editor.setShowPrintMargin(false);
           </script>
       </div>
       <div class="modal-footer">
