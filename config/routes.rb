@@ -13,6 +13,7 @@ TesisUI::Application.routes.draw do
   get "bundle_layout" => 'pages#bundle_edge_layout'
   get "rotate_cluster_layout" => 'pages#bundle_rotate_layout'
   get "collapse_tree_layout" => 'pages#bundle_collapse_layout'
+  get "popover" => 'pages#popover'
   
   get "welcome/index"
   root "welcome#index"
