@@ -1,5 +1,6 @@
 function loadFilesPanel(){
-	
+	 $("#popover-button").on('click',popover);
+	 
 	var lastSelected = 1;
     $('table').on('click','tbody tr',function(event){
     	
@@ -115,9 +116,9 @@ function nodeShowDataOnClick(d){
         var fileRoute = mapServices.fileRoute;
 
         var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
-        var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>"
-        //var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div>";
-        var verWSDLButtonHTML = '<hr/><button class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
+        var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>";
+     //   var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
+        var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
 
         $("#ServiceData").empty();
         $("#modalWSDLFileTitle").empty();
@@ -125,7 +126,6 @@ function nodeShowDataOnClick(d){
 
         $("#ServiceData").append(nameHTML);
         $("#ServiceData").append(fileHTML);
-        //$("#ServiceData").append(pathHTML);
         $("#ServiceData").append(verWSDLButtonHTML);
 
         $("#modalWSDLFileTitle").append(fileName);
@@ -155,7 +155,29 @@ function nodeShowDataOnClick(d){
         $('#modalWSDLFile').on('shown.bs.modal', function (e) {
 
             editor.resize();
-        })
+        });
 
     }
+}
+
+
+
+
+
+
+
+function popover(d) {
+	 $.ajax({
+         url: 'popover',
+         type: 'GET',            
+         success: function(response) {    	 
+         			console.log(response);
+				         $("#popover-content").html(response);
+			    },
+         error: function(jqXHR, textStatus, errorThrown)
+         {
+         	console.log('ERRORS: ' + textStatus);
+         }
+     });
+	
 }

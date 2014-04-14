@@ -23,4 +23,11 @@ class PagesController < ApplicationController
     @title = "Tree"
     render layout: false
   end
+  
+  def popover
+    hola = "hola"
+    @serviceMap = ["pepe","hola","juan"]
+   render layout: false
+    
+      end
 end
