@@ -5,7 +5,6 @@ function loadTreeButton(){
 
 }
 function showTree(){
-mapperServices();
 var width = 660,
     height = 400;
 

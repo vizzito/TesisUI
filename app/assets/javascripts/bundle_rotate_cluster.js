@@ -5,7 +5,6 @@ function loadClusterButton(){
 }
 
 function showRotateCluster(){
-mapperServices();
 var w = 860,
     h = 580,
     rx = w / 2,

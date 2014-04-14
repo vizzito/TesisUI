@@ -5,7 +5,6 @@ function loadBundleButton(){
 	});
 }
 function showBundle(){
-mapperServices();
 var margin = {top: 40, right: 40, bottom: 40, left: -150},
     width = 500 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;

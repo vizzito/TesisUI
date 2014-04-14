@@ -80,7 +80,7 @@ function loadFilesPanel(){
                      reader.readAsText(f);
 
                      $("#files-table tbody").append('<tr><td  class = "th-width">'+f.name+'</td></tr>');
-                 }
+                 };
                  func(newFiles[i]);
 			 }
 		}

@@ -36,7 +36,6 @@ function showCollapse(){
 	});
 
 	function update(source) {
-      mapperServices();
 	  // Compute the flattened node list. TODO use d3.layout.hierarchy.
 	  var nodes = tree.nodes(root);
       var height = Math.max(500, nodes.length * barHeight + margin.top + margin.bottom);

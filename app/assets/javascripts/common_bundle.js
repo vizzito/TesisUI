@@ -33,6 +33,7 @@ function generateTreeParams(view,tension) {
 				'Cache-Control' : 'max-age=0'
 			},
 			success : function(response) {
+				setMapperServices();
 				switch (view) {
 				case "radial":
 					showRadial(tension);
@@ -58,6 +59,7 @@ function generateTreeParams(view,tension) {
 	} else {
 		// show message, not files selected!!!
 	}
+	
 }
 
 $('.loading-indicator').hide();
