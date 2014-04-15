@@ -1,4 +1,7 @@
+require 'create_file_module.rb'
+
 class PagesController < ApplicationController
+  include CreateFileModule
   def inverted_radial_layout
     @title = "Inverted Radial"
     render :layout => false
@@ -24,10 +27,10 @@ class PagesController < ApplicationController
     render layout: false
   end
   
-  def popover
-    hola = "hola"
-    @serviceMap = ["pepe","hola","juan"]
+  def file_information
+    selectedFile = params[:fileName]
+    serviceMap = getServiceMap
+    @serviceNames = serviceMap[selectedFile]
    render layout: false
-    
       end
 end

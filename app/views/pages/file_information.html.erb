@@ -1,0 +1,9 @@
+<div id="file_information"> 
+	<%if  @serviceNames != nil
+		@serviceNames.each do |n| %>
+			<li>
+			<%= n %>
+			</li>
+		<%end%>
+	<%end%>
+</div>

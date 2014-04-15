@@ -1,1 +1,1 @@
-{"ListarPersxDoc":"ListadoPersxDoc.wsdl","RealizaReversion":"Est_GC_Reversion.wsdl","ObtenerInfSumariaDecJurada":"DatosInfoSumarialyDDJJ.wsdl","ObtenerPersonaxCUIL":"InformacionDePersona.wsdl"}
+{"ObtenerHijos":"ConsultaDeHijos.wsdl"}

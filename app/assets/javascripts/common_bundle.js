@@ -1,4 +1,4 @@
-
+var showAnimation = true;
 function generateTreeParams(view,tension) {
 	selectedFiles = [];
 	var row = $('#files-table').find('tr');
@@ -64,16 +64,19 @@ function generateTreeParams(view,tension) {
 
 $('.loading-indicator').hide();
 $(document).ajaxStart(function() {
+		
+   if(showAnimation){
 	$('#myModal').show();
 	$('#myModal').modal({
 		backdrop : 'static',
 		keyboard : false,
 		show : true
 	});
-}).ajaxStop(function() {
+}}).ajaxStop(function() {
 	$('#myModal').hide();
 	$('#myModal').modal('hide');
-});
+}
+);
 
 var packages = {
 

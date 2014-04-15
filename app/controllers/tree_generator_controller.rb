@@ -22,7 +22,9 @@ class TreeGeneratorController < ApplicationController
     create_data_file(@dataFile)
     create_data_map(@dataMap)
     
-    @serviceMap = ["pepe","jose","juan"]#{"service1"=> "archivo1","service2"=> "archivo1","service3"=> "archivo2","service4"=> "archivo3"}
+    @serviceMap = createServiceMap(@dataMap)
+  #  debugger
+   # @serviceMap = ["pepe","jose","juan"]#{"service1"=> "archivo1","service2"=> "archivo1","service3"=> "archivo2","service4"=> "archivo3"}
     render :json=>true
   end
 

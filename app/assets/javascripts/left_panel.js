@@ -1,5 +1,5 @@
 function loadFilesPanel(){
-	 $("#popover-button").on('click',popover);
+	// $("#popover-button").on('click',popover);
 	 
 	var lastSelected = 1;
     $('table').on('click','tbody tr',function(event){
@@ -115,21 +115,27 @@ function nodeShowDataOnClick(d){
         var fileName = mapServices.fileName;
         var fileRoute = mapServices.fileRoute;
 
-        var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
-        var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>";
+      //  var nameHTML = "<div><strong>Service Name:</strong> " + serviceName + "</div>";
+      //  var fileHTML = "<div><strong>Service File:</strong> " + fileName + "</div>";
+        
      //   var pathHTML = "<div><strong>Service Path:</strong> <small>" + fileRoute.split('/').join(' / ') + "</small></div><hr/>";
-        var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Ver ' + fileName + '</button>';
+        var verWSDLButtonHTML = '<button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalWSDLFile">Show ' + fileName + '</button>';
 
-        $("#ServiceData").empty();
+        $("#serviceButton").empty();
+        $("#serviceName").empty();
+        $("#fileName").empty();
+        $("#serviceButton").empty();
+        $("#serviceName").append(serviceName);
+        $("#fileName").append(fileName);
         $("#modalWSDLFileTitle").empty();
         $("#modalWSDLFileBody").empty();
 
-        $("#ServiceData").append(nameHTML);
-        $("#ServiceData").append(fileHTML);
-        $("#ServiceData").append(verWSDLButtonHTML);
+      //  $("#ServiceData").append(nameHTML);
+      //  $("#ServiceData").append(fileHTML);
+        $("#serviceButton").append(verWSDLButtonHTML);
 
         $("#modalWSDLFileTitle").append(fileName);
-
+        showInfoFile(fileName);
         var f = null;
         if (files != undefined)
             for (var i = 0; i < files.length; i++)
@@ -152,6 +158,9 @@ function nodeShowDataOnClick(d){
         editor.scrollToLine(0);
         editor.focus();
 
+        //$("#fileName").unbind('click').on('click',function(d){
+        	
+       // });
         $('#modalWSDLFile').on('shown.bs.modal', function (e) {
 
             editor.resize();
@@ -166,13 +175,16 @@ function nodeShowDataOnClick(d){
 
 
 
-function popover(d) {
+function showInfoFile(fileName) {
+	showAnimation = false;
 	 $.ajax({
-         url: 'popover',
+         url: 'file_information',
+         data: {fileName: fileName},
          type: 'GET',            
-         success: function(response) {    	 
-         			console.log(response);
-				         $("#popover-content").html(response);
+         success: function(response) {
+        	 
+        	 showAnimation = true;
+				         $("#file-information-content").html(response);
 			    },
          error: function(jqXHR, textStatus, errorThrown)
          {

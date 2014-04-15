@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
-#gem 'debugger'
+gem 'debugger'
 gem 'bootstrap-sass'
 gem "bootstrap-slider-rails", "~> 1.9.0"
 gem 'jquery-ui-sass-rails'

@@ -7,18 +7,23 @@ function loadNav(){
 	});
 	
 $("#inverted_nav").on('click',function(){
+	showAnimation = false;
 	callAjax('inverted_radial_layout');
 });
 $("#bundle_nav").on('click',function(){
+	showAnimation = false;
  	callAjax('bundle_layout');
 });
 $("#tree_nav").on('click',function(){
+	showAnimation = false;
 	callAjax('tree_layout');
 });
 $("#rotate_nav").on('click',function(){
+	showAnimation = false;
 	callAjax('rotate_cluster_layout');
 });
 $("#collapse_nav").on('click',function(){
+	showAnimation = false;
 	callAjax('collapse_tree_layout');
 });
 }
@@ -27,7 +32,7 @@ function callAjax(url){
             url: url,
             type: 'GET',            
             success: function(response) {    	 
-            			console.log(response);
+            	showAnimation = true;
 				         $("#content").html(response);
 			    },
             error: function(jqXHR, textStatus, errorThrown)
