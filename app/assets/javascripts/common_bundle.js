@@ -57,11 +57,19 @@ function generateTreeParams(view,tension) {
 			}
 		});
 	} else {
-		// show message, not files selected!!!
+//		$("#message-text").empty();
+//		$("#message-text").append("At least one file must be selected.");
+		//$("#message-content").show();
+		//$('#message-content').css('display', 'block');
+		$('#message-content').animate({ opacity: 1 }, 0.6);
+		$("#message-content").fadeIn('slow').delay(2000).fadeOut('slow');
+		
 	}
 	
 }
-
+$("#message-content").on('hide',function(){
+    $("#message-content").hide();
+});
 $('.loading-indicator').hide();
 $(document).ajaxStart(function() {
 		
