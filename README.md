@@ -25,6 +25,7 @@ Steps
 - Start Rails server
   : `$: rails server` // default on :3000
 
+From ServerClusterer project
 - Run `$: mvn clean install` to generate .war // default in target folder
 - Run `$: mvn eclipse:clean eclipse:eclipse` 
 - Copy META-INF and WEB-INF folders into tomcat server (/webapps/ServiceClusterer/ folder)[create the folder named "ServiceClusterer"]
@@ -41,7 +42,7 @@ Steps
         </servlet-mapping>
         
 - update this property with the local tomcat folder in config.properties file 
-  `$: tomcat.dir = "/home/panther/tomcat/apache-tomcat-7.0.52/webapps/ServiceClusterer"` 
+  `tomcat.dir = "/home/panther/tomcat/apache-tomcat-7.0.52/webapps/ServiceClusterer"` 
 - give pemissions: 
    `$: sudo chown -R  panther:panther /home/panther/tomcat/apache-tomcat-7.0.52/work/Catalina/localhost/ServiceClusterer/`
 - Run tomcat server (port 8080)
