@@ -26,6 +26,7 @@ Steps
   : `$: rails server` // default on :3000
 
 From ServerClusterer project
+----------------------------
 - Run `$: mvn clean install` to generate .war // default in target folder
 - Run `$: mvn eclipse:clean eclipse:eclipse` 
 - Copy META-INF and WEB-INF folders into tomcat server (/webapps/ServiceClusterer/ folder)[create the folder named "ServiceClusterer"]
