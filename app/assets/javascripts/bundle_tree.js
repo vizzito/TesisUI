@@ -1,42 +1,8 @@
-//= require d3.js
-//= require common_bundle.js
-
 function loadTreeButton(){
 	$('#generarButtonTree').click(function(event) {
-		$('.loading-indicator').hide();
-		$(document).ajaxStart(function() {
-			$('#myModal').show();
-			$('#myModal').modal({backdrop: 'static',
-					  keyboard: false,
-					  show: true
-			});
-		}).ajaxStop(function() {
-			$('#myModal').hide();
-			$('#myModal').modal('hide');
-		});
-		
-		$.ajax({
-			type: "POST",
-			    url: "/tree_generator#generate",
-			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
-			    	   topsimil:  $('#sliderValLabel2').val()},
-			    dataType: "text",
-
-			    success: function(response) {    	 
-				         showTree();
-			    },
-			    error: function(data){
-			    alert("fail");
-
-			    }
-			});
+		generateTreeParams("tree");
 	});
 
-	$("#slidertwo").slider();
-	$('#slidertwo').on('slide', function(ev) {
-		$("#sliderValLabel1").val(ev.value[0]);
-		$("#sliderValLabel2").val(ev.value[1]);
-	});
 }
 function showTree(){
 var width = 660,
@@ -77,7 +43,7 @@ d3.json("/tmp/files/datafile.json", function(error, root) {
       .attr("dx", function(d) { return d.children ? -8 : 8; })
       .attr("dy", 3)
       .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-      .text(function(d) { return d.name; });
+      .text(function(d) { return d.name; }).on("click", nodeShowDataOnClick);
 });
 
 d3.select(self.frameElement).style("height", height + "px");

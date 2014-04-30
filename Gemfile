@@ -6,6 +6,12 @@ gem 'debugger'
 gem 'bootstrap-sass'
 gem "bootstrap-slider-rails", "~> 1.9.0"
 gem 'jquery-ui-sass-rails'
+gem 'json'
+gem 'rest-client', '~> 1.6.7'
+#gem 'jquery-fileupload-rails'
+
+#gem 'less-rails'
+#gem 'therubyracer'
 
 #gem 'jquery-ui-sass-rails'
 group :development do
@@ -51,3 +57,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Ace editor
+gem 'ace-rails-ap', '~> 2.0.1'

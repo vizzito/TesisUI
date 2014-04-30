@@ -17,4 +17,19 @@
 //= require bootstrap
 //= require_tree .
 //= require bootstrap-slider
+//= require jquery.hoverIntent.min.js
+//= require jquery.mb.flipText.js
+//= require d3.js
+//= require ace/ace
+//= require ace/mode-xml.js
+//= require ace/theme-monokai.js
 
+$.ajaxSetup({ cache: false });
+$.removeData();
+
+//en firefox no anda el .each!!
+//ver el generar arbol desde los demas uqe no son invertedradial...
+//borrar archivos guardados en el server cuando termina de ejecutar
+//el selected files solo anda en inverted!
+// absolute path de los archivos... ver como manejar eso, archivo propiedades maybe
+// definir logica para manejar archivos de diferentes reuqest... sincronizar, crea carpetas individuales.. etc

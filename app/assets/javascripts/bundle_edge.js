@@ -1,41 +1,7 @@
-//= require d3.js
-//= require common_bundle.js
 function loadBundleButton(){
-	
+
 	$('#generarButtonBundle').click(function(event) {
-		$('.loading-indicator').hide();
-		$(document).ajaxStart(function() {
-			$('#myModal').show();
-			$('#myModal').modal({backdrop: 'static',
-					  keyboard: false,
-					  show: true
-			});
-		}).ajaxStop(function() {
-			$('#myModal').hide();
-			$('#myModal').modal('hide');
-		});
-		
-		$.ajax({
-			type: "POST",
-			    url: "/tree_generator#generate",
-			    data: {bottomsimil:  $('#sliderValLabel1').val(), 
-			    	   topsimil:  $('#sliderValLabel2').val()},
-			    dataType: "text",
-
-			    success: function(response) {    	 
-			    	showBundle();
-			    },
-			    error: function(data){
-			    alert("fail");
-
-			    }
-			});
-	});
-
-	$("#slidertwo").slider();
-	$('#slidertwo').on('slide', function(ev) {
-		$("#sliderValLabel1").val(ev.value[0]);
-		$("#sliderValLabel2").val(ev.value[1]);
+		generateTreeParams("bundle");
 	});
 }
 function showBundle(){
@@ -57,9 +23,9 @@ var line = d3.svg.line()
     .y(function(d) { return d.x; });
 $("#panel-bundle").html("");
 var svg = d3.select("#panel-bundle").append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", 800)
     .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+    .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var link = svg.append("g").selectAll(".link"),
@@ -70,8 +36,8 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       links = packages.imports(nodes);
 
   link = link.data(bundle(links))
-    .enter().append("path").each(function(d) { 
-        d.source = d[0], d.target = d[d.length - 1]; 
+    .enter().append("path").each(function(d) {
+        d.source = d[0], d.target = d[d.length - 1];
     })
       .attr("class", "link")
       .attr("d", line);
@@ -85,7 +51,8 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .attr("dy", ".31em")
       .text(function(d) { return d.key; })
       .on("mouseover", mouseovered)
-      .on("mouseout", mouseouted);
+      .on("mouseout", mouseouted)
+      .on("click", nodeShowDataOnClick);
 
 });
 function mouseovered(d) {

@@ -1,32 +1,77 @@
 <div id= "header-parameters"class = "row">
-		<div class >
-		<div class="col-md-8 col-md-offset-2">
-			
+	<div class="container" >
+		<div class="col-md-6 col-md-offset-3">
+
 			<input id="slidertwo" type="text" class="span2" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="[<%= params.bottomsimil%>,<%= params.topsimil%>]"/>
 
 			<span style="margin-left: 20px"> Bottom Simil: </span>
-			<input id="sliderValLabel1"  type="number" name="quantity" min="0" max="100" value="<%= params.bottomsimil%>">
+			<input style="max-width: 50px;text-align: center;" id="sliderValLabel1"  type="number" name="quantity" min="0" max="100" value="<%= params.bottomsimil%>">
 			</input>
 			<span style="margin-left: 20px"> Top Simil: </span>
-			<input id="sliderValLabel2"  type="number" name="quantity" min="0" max="100" value="<%= params.topsimil%>">
-			</input>
-
+			<input style="max-width: 50px;text-align: center;" id="sliderValLabel2"  type="number" name="quantity" min="0" max="100" value="<%= params.topsimil%>"/>
 			<!--span class="btn btn-default btn-lg" role="button" id="generarButton"> Generar </span-->
 		</div>
 	</div>
 </div>
 
 <div id="myModal" class="modal fade">
-  <div class="modal-dialog">
-  	
-    <div class="modal-content">
-    	<div class="modal-header">
-  		<h4 style="text-align: center";> <strong>Generando arbol de jerarquias..</strong></h4>
-  	</div>
-      <!-- dialog body -->
-      <div class="modal-body">
-        <%= image_tag("loader.gif", :id => "loading-indicator") %>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 style="text-align: center;"><strong>Generating hierarchy tree ...</strong></h4>
+			</div>
+			<!-- dialog body -->
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="text-center">
+							<i class="fa fa-refresh fa-spin fa-5x"></i>
+						</div>
+					</div>
+				</div>
+
+				<!--<%= image_tag("loader.gif", :id => "loading-indicator") %>-->
+			</div>
+		</div>
+	</div>
 </div>
+
+<div class="modal fade" id="modalWSDLFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title"><i class="fa fa-file-text-o"></i><i id="modalWSDLFileTitle"></i></h4>
+			</div>
+			<div class="modal-body modal-body-editor">
+				<div id="editor" id="modalWSDLFileBody"></div>
+				<script>
+					var editor = ace.edit("editor");
+					var XMLMode = require("ace/mode/xml").Mode;
+					editor.setTheme("ace/theme/ambiance");
+					editor.getSession().setMode(new XMLMode());
+					editor.setShowPrintMargin(false);
+				</script>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class = "row">
+				<div class = "col-md-8 col-md-offset-2">
+					<div class="text-center">
+						<div id = "message-content" class="alert alert-danger fade in" aria-hidden="true"style="margin-top: 30px;display: none;margin-bottom: 0px;">
+							<div>
+								At least one file must be selected.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>

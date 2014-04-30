@@ -1,0 +1,10 @@
+*.gem *.rbc /.config /coverage/ /InstalledFiles /pkg/ /spec/reports/ /test/tmp/ /test/version_tmp/ /tmp/ *.rbc 
+*.sassc## Specific to RubyMotion: .dat* .repl_history build/ .sass-cache capybara-*.html## Documentation cache and 
+generated files: /.yardoc/ /_yardoc/ /doc/ /rdoc/ .rspec /.bundle## Environment normalisation: /.bundle/ 
+/lib/bundler/man/ vendor/bundle log/*# for a library or gem, you might want to ignore these files since the code 
+is tmp/*# intended to run in multiple environments; otherwise, check them in: db/*.sqlite3# Gemfile.lock 
+public/system/*# .ruby-version */coverage/# .ruby-gemset */spec/tmp/* **.orig# unless supporting rvm < 1.11.0 or 
+doing something fancy, ignore this: .rvmrc rerun.txt pickle-email-*.html .project .DS_Store 
+config/initializers/secret_token.rb config/database.yml config/auth.yml config/config.yml config/braintree.yml 
+app/controllers/spree/home_controller.rb
+public/spree/products/*

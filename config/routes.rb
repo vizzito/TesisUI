@@ -3,7 +3,7 @@ TesisUI::Application.routes.draw do
   #post "inverted_radial_layout" => 'inverted_radial_layout#generate'
   post "tree_generator" => 'tree_generator#generate'
  
- 
+ get "partial" => 'pages#partial'
  
   
   get "parameters_layout" => 'parameters_layout'
@@ -13,9 +13,10 @@ TesisUI::Application.routes.draw do
   get "bundle_layout" => 'pages#bundle_edge_layout'
   get "rotate_cluster_layout" => 'pages#bundle_rotate_layout'
   get "collapse_tree_layout" => 'pages#bundle_collapse_layout'
+  get "file_information" => 'pages#file_information'
   
   get "welcome/index"
-  root "pages#inverted_radial_layout"
+  root "welcome#index"
  
  
   # The priority is based upon order of creation: first created -> highest priority.

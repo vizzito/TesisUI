@@ -4,9 +4,6 @@
 <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Tesis Ui" %>">
 <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "bundle_radial" %>
-<%= javascript_include_tag "bundle_tree" %>
-<%= javascript_include_tag "bundle_edge" %>
-<%= javascript_include_tag "bundle_rotate_cluster" %>
-<%= javascript_include_tag "bundle_collapse_tree" %>
+<%= javascript_include_tag "nav_views" %>
+<%= javascript_include_tag "left_panel" %>
 <%= csrf_meta_tags %>
