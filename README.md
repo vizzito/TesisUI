@@ -25,8 +25,8 @@ Steps
 - Start Rails server
   : `$: rails server` // default on :3000
 
-- Run `$: maven clean install` to generate .war // default in target folder
-- Run `$: maven eclipse:clean eclipse:eclipse` 
+- Run `$: mvn clean install` to generate .war // default in target folder
+- Run `$: mvn eclipse:clean eclipse:eclipse` 
 - Copy META-INF and WEB-INF folders into tomcat server (/webapps/ServiceClusterer/ folder)[create the folder named "ServiceClusterer"]
 - Add to Tomcat's Path/config/web.xml:
     
