@@ -1,19 +1,55 @@
 var showAnimation = true;
-function generateTreeParams(view,tension) {
-	selectedFiles = [];
+
+function isSelected(name, files) {
+    for (var i = 0; i < files.length; i++) {
+        if (files[i] == name) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getSelectedFiles() {
+	var selectedFiles = [];
 	var row = $('#files-table').find('tr');
 	$('#files-table tr').each(function() {
 		if ($(this).hasClass('selected')) {
 			selectedFiles.push(this.innerText);
 		}
 	});
+	return selectedFiles;
+}
 
+function callDetectorService(files) {
+	//var selectedFiles = getSelectedFiles();
+//	var data = new FormData();
+//	data.append(files);
+
+	$.ajax({
+		url : 'anti_pattern_detector',
+		data : {files : files},
+		type : 'POST',
+		//dataType : 'json',
+		
+		success : function(response) {
+			$("#anti-pattern-content").html(response);
+			console.log(response);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log('ERRORS: ' + textStatus);
+		}
+
+	});
+}
+
+function generateTreeParams(view, tension) {
 	var data = new FormData();
+	var selectedFiles = getSelectedFiles();
 	data.append("bottomsimil", $('#sliderValLabel1').val());
 	data.append("topsimil", $('#sliderValLabel2').val());
 	var hasFiles = false;
 	for (var i = 0; i < files.length; i++) {
-		if (isSelected(files[i].name)) {
+		if (isSelected(files[i].name,selectedFiles)) {
 			data.append(i, files[i]);
 			hasFiles = true;
 		}
@@ -27,8 +63,8 @@ function generateTreeParams(view,tension) {
 			dataType : 'json',
 			processData : false, // Don't process the files
 			contentType : false, // Set content type to false as jQuery will
-									// tell the server its a query string
-									// request
+			// tell the server its a query string
+			// request
 			headers : {
 				'Cache-Control' : 'max-age=0'
 			},
@@ -57,34 +93,36 @@ function generateTreeParams(view,tension) {
 			}
 		});
 	} else {
-//		$("#message-text").empty();
-//		$("#message-text").append("At least one file must be selected.");
-		//$("#message-content").show();
-		//$('#message-content').css('display', 'block');
-		$('#message-content').animate({ opacity: 1 }, 0.6);
+		// $("#message-text").empty();
+		// $("#message-text").append("At least one file must be selected.");
+		// $("#message-content").show();
+		// $('#message-content').css('display', 'block');
+		$('#message-content').animate({
+			opacity : 1
+		}, 0.6);
 		$("#message-content").fadeIn('slow').delay(2000).fadeOut('slow');
-		
+
 	}
-	
+
 }
-$("#message-content").on('hide',function(){
-    $("#message-content").hide();
+$("#message-content").on('hide', function() {
+	$("#message-content").hide();
 });
 $('.loading-indicator').hide();
 $(document).ajaxStart(function() {
-		
-   if(showAnimation){
-	$('#myModal').show();
-	$('#myModal').modal({
-		backdrop : 'static',
-		keyboard : false,
-		show : true
-	});
-}}).ajaxStop(function() {
+
+	if (showAnimation) {
+		$('#myModal').show();
+		$('#myModal').modal({
+			backdrop : 'static',
+			keyboard : false,
+			show : true
+		});
+	}
+}).ajaxStop(function() {
 	$('#myModal').hide();
 	$('#myModal').modal('hide');
-}
-);
+});
 
 var packages = {
 

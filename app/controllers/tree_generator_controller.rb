@@ -7,24 +7,13 @@ class TreeGeneratorController < ApplicationController
   end
 
   def generate
- #   debugger
-   # data = params[:files]
-    
     bottom = params[:bottomsimil]
     top = params[:topsimil]
- #   selectedFiles = params[:files]
-    
     updateParams(bottom,top)
-    
-  #  callService(bottom,top,selectedFiles)
-  
     callService(params)
     create_data_file(@dataFile)
     create_data_map(@dataMap)
-    
     @serviceMap = createServiceMap(@dataMap)
-  #  debugger
-   # @serviceMap = ["pepe","jose","juan"]#{"service1"=> "archivo1","service2"=> "archivo1","service3"=> "archivo2","service4"=> "archivo3"}
     render :json=>true
   end
 

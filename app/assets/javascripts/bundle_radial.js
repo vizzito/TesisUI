@@ -1,15 +1,7 @@
 $("html,body").scrollTop();
 
-var selectedFiles = [];
+//var selectedFiles = [];
 
-function isSelected(name) {
-    for (var i = 0; i < selectedFiles.length; i++) {
-        if (selectedFiles[i] == name) {
-            return true;
-        }
-    }
-    return false;
-}
 
 function loadRadialButton(){
 	$('#generarButtonRadial').click(function(event) {
@@ -18,7 +10,10 @@ function loadRadialButton(){
 }
 
 function showRadial(num){
-
+	//por ahora lo dejo! los levanta desde el archivo mapFiles.json
+	// esta puesto solo en bundle
+	setMapperServices();
+	///////////////////////
 var tension = num/100.0;
 var diameter = 650,
     radius = diameter / 2,
