@@ -1,5 +1,6 @@
 var showAnimation = true;
-
+var modalMessage = ["Generating hierarchy tree ...","Detecting Anti Patterns ..."];
+var message = 0;
 function isSelected(name, files) {
     for (var i = 0; i < files.length; i++) {
         if (files[i] == name) {
@@ -21,17 +22,13 @@ function getSelectedFiles() {
 }
 
 function callDetectorService(files) {
-	//var selectedFiles = getSelectedFiles();
-//	var data = new FormData();
-//	data.append(files);
-
+	message = 1;
 	$.ajax({
 		url : 'anti_pattern_detector',
 		data : {files : files},
 		type : 'POST',
-		//dataType : 'json',
-		
 		success : function(response) {
+			
 			$("#anti-pattern-content").html(response);
 			console.log(response);
 		},
@@ -43,6 +40,7 @@ function callDetectorService(files) {
 }
 
 function generateTreeParams(view, tension) {
+	message = 0;
 	var data = new FormData();
 	var selectedFiles = getSelectedFiles();
 	data.append("bottomsimil", $('#sliderValLabel1').val());
@@ -109,9 +107,11 @@ $("#message-content").on('hide', function() {
 	$("#message-content").hide();
 });
 $('.loading-indicator').hide();
+
 $(document).ajaxStart(function() {
 
 	if (showAnimation) {
+		$('#myModal .modalMessage').text(modalMessage[message]);
 		$('#myModal').show();
 		$('#myModal').modal({
 			backdrop : 'static',

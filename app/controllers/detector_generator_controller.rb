@@ -8,14 +8,10 @@ class DetectorGeneratorController < ApplicationController
   end
 
   def generate
-   @dataPatternDetector = callDetectorService(params[:files])
-#    create_data_file(@dataFile)
-#    create_data_map(@dataMap)
-    
- #   @serviceMap = createServiceMap(@dataMap)
-   # @serviceMap = ["pepe","jose","juan"]#{"service1"=> "archivo1","service2"=> "archivo1","service3"=> "archivo2","service4"=> "archivo3"}
-  #  render :json=>true
-    render layout: false,:status => 200
+   response = callDetectorService(params[:files])
+   @dataPatternDetector = response["antiPatterns"]
+   @fileName = response["fileName"]
+   render layout: false,:status => 200
   end
 
   def updateParams(bottom,top)

@@ -162,10 +162,9 @@ function nodeShowDataOnClick(d) {
 }
 
 function detectAntiPattern() {
-	showAnimation = false;
-	files = [];
-	files.push(mapServices.fileName);
-	callDetectorService(files);
+	filesToDetect = [];
+	filesToDetect.push(mapServices.fileName);
+	callDetectorService(filesToDetect);
 }
 
 function showInfoFile(fileName) {
@@ -186,21 +185,3 @@ function showInfoFile(fileName) {
 		}
 	});
 }
-//
-//function showPatternDetectorInfo(){
-//	$.ajax({
-//		url : 'file_information',
-//		data : {
-//			fileName : fileName
-//		},
-//		type : 'GET',
-//		success : function(response) {
-//
-//			showAnimation = true;
-//			$("#file-information-content").html(response);
-//		},
-//		error : function(jqXHR, textStatus, errorThrown) {
-//			console.log('ERRORS: ' + textStatus);
-//		}
-//	});
-//}
