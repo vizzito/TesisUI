@@ -1,20 +1,17 @@
 require 'create_file_module.rb'
+class DetectorGeneratorController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
-class TreeGeneratorController < ApplicationController
   include CreateFileModule
   def index
 
   end
 
   def generate
-    bottom = params[:bottomsimil]
-    top = params[:topsimil]
-    updateParams(bottom,top)
-    callService(params)
-    create_data_file(@dataFile)
-    create_data_map(@dataMap)
-    @serviceMap = createServiceMap(@dataMap)
-    render :json=>true
+   response = callDetectorService(params[:files])
+   @dataPatternDetector = response["antiPatterns"]
+   @fileName = response["fileName"]
+   render layout: false,:status => 200
   end
 
   def updateParams(bottom,top)

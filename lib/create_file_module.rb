@@ -1,5 +1,5 @@
 module CreateFileModule
-
+require 'json'
   def callService(data)  
     require 'rest-client'    
     uri = URI.parse('http://localhost:8080/ServiceClusterer/visualtree')
@@ -8,7 +8,14 @@ module CreateFileModule
     @dataFile = responseData[0]
     @dataMap = responseData[1]
   end
-
+  
+   def callDetectorService(data)  
+     require 'rest-client'    
+     response = RestClient.post 'http://localhost:8080/detector/ap-detector',{:files => data}
+     jsonObject = JSON.parse(response)
+     return jsonObject[0]
+   end
+  
   def create_data_file(data)
     path = Rails.root.join('public', 'tmp','files').to_s
     newFile = File.open(path+"/datafile.json", 'w+')
