@@ -30,18 +30,26 @@ From ServerClusterer project
 - Run `$: mvn clean install` to generate .war // default in target folder
 - Run `$: mvn eclipse:clean eclipse:eclipse` 
 - Copy META-INF and WEB-INF folders into tomcat server (/webapps/ServiceClusterer/ folder)[create the folder named "ServiceClusterer"]
+
 - Add to Tomcat's Path/config/web.xml:
-    
-        <multipart-form enable="true"/>
-        <servlet>
-            <servlet-name>ServicesAPI</servlet-name>
-            <servlet-class>org.clusterer.services.ServicesAPI</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>ServicesAPI</servlet-name>
-            <url-pattern>/visualtree</url-pattern>
-        </servlet-mapping>
-        
+ `<servlet>
+    <servlet-name>ServicesAPI</servlet-name>
+    <servlet-class>org.clusterer.services.ServicesAPI</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ApDetectorService</servlet-name>
+    <servlet-class>detector.ApDetectorService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApDetectorService</servlet-name>
+    <url-pattern>/ap-detector</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServicesAPI</servlet-name>
+    <url-pattern>/visualtree</url-pattern>
+  </servlet-mapping>
+  <multipart-form enable="true"/>`
+
 - update this property with the local tomcat folder in config.properties file 
   `tomcat.dir = "/home/panther/tomcat/apache-tomcat-7.0.52/webapps/ServiceClusterer"` 
 - give pemissions: 

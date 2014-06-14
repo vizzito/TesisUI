@@ -22,6 +22,7 @@ function getSelectedFiles() {
 }
 
 function callDetectorService(files) {
+	showAnimation = true;
 	message = 1;
 	$.ajax({
 		url : 'anti_pattern_detector',
@@ -40,6 +41,7 @@ function callDetectorService(files) {
 }
 
 function generateTreeParams(view, tension) {
+	showAnimation = true;
 	message = 0;
 	var data = new FormData();
 	var selectedFiles = getSelectedFiles();
@@ -122,6 +124,7 @@ $(document).ajaxStart(function() {
 }).ajaxStop(function() {
 	$('#myModal').hide();
 	$('#myModal').modal('hide');
+	showAnimation = false;
 });
 
 var packages = {
