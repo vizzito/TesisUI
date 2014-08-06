@@ -48,7 +48,10 @@
 					<div class = "row table-container">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title"><i class="fa fa-info-circle"></i></span> Service Info: </h3>
+								  <h3 class="panel-title">
+                                    <i class="fa fa-info-circle"></i> Service Info:
+                                    <i id="ServiceInfoPanelTitle"></i>
+                                  </h3>
 							</div>
 							<div class="panel-body">
 								<div id="ServiceData">
@@ -65,6 +68,9 @@
 										</div>
 										<div class = "col-md-8" id = "serviceName"></div>
 									</div>
+                                  <div class = "row">
+                                    <div class = "col-md-12" style="margin-top: 20px;text-align: right;" id = "moreInfoButton"></div>
+                                  </div>
 									<div class = "row">
 										<div class = "col-md-12" style="margin-top: 20px;text-align: right;" id = "serviceButton"></div>
 									</div>
@@ -91,7 +97,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title"><i class="fa fa-info-circle"></i></span> AntiPattern Info:
-								<button id= "btn-anti-pattern" class="btn btn-success btn-xs" style="float: right;">
+								<button id="btn-anti-pattern" class="btn btn-success btn-xs" style="float: right;">
 									Detect anti patterns
 								</button></h3>
 							</div>
