@@ -6,10 +6,13 @@
   fill: #787878;
 }
 
-.node:hover {
-  fill: #000;
+// .node:hover {
+  // fill: #000;
+// }
+.node-selected{
+    font-weight: 700;
+    stroke: #000;
 }
-
 .link {
   stroke: steelblue;
   stroke-opacity: .4;
@@ -49,3 +52,5 @@
   stroke: steelblue;
   stroke-width: 1.5px;
 }
+
+

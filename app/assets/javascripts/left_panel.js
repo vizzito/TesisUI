@@ -103,10 +103,10 @@ function loadFilesPanel() {
             $(this).toggleClass("selected");
         });
     });
-
 }
 
 function nodeShowDataOnClick(d) {
+	if(d!=undefined){
     mapServices.serviceName = d.name;
     var serviceName = mapServices.serviceName;
     if (mapServices.map != null) {
@@ -127,7 +127,7 @@ function nodeShowDataOnClick(d) {
         $("#moreInfoButton").empty();
         $("#modalWSDLInfoTitle").empty();
         $("#WSDLMoreInfo").empty();
-        $("#ServiceInfoPanelTitle").empty()
+        $("#ServiceInfoPanelTitle").empty();
 
         $("#serviceName").append(serviceName);
         $("#fileName").append(fileName);
@@ -165,10 +165,11 @@ function nodeShowDataOnClick(d) {
         });
 
         $('#myTab a').click(function (e) {
-            e.preventDefault()
-            $(this).tab('show')
-        })
+            e.preventDefault();
+            $(this).tab('show');
+        });
     }
+	}
 }
 
 function detectAntiPattern() {

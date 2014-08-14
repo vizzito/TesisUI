@@ -26,7 +26,7 @@ var cluster = d3.layout.cluster()
 
 //Constructs a new default bundle layout
 var bundle = d3.layout.bundle();
-
+var object;
 var line = d3.svg.line.radial()
     .interpolate("bundle")
     .tension(tension)
@@ -57,7 +57,7 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
 
   node = node
       .data(nodes.filter(function(n) { return !n.children; }))
-    .enter().append("text")
+      .enter().append("text")
       .attr("class", "node")
       .attr("dx", function(d) { return d.x < 180 ? 8 : -8; })
       .attr("dy", ".31em")
@@ -67,9 +67,16 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .on("mouseover", mouseovered)
       .on("mouseout", mouseouted)
       .on("click", nodeShowDataOnClick);
+     // .on("click", pepe);
 });
 
+//function pepe(d){
+//	n = function(l) { if (l.source.name == d.name) return l.source; };
+//	node.classed("node-selected", n);
+//	nodeShowDataOnClick();
+//}
 function mouseovered(d) {
+	object = d;
     mapServices.serviceName = d.name;
     node
       .each(function(n) { n.target = n.source = false; });
