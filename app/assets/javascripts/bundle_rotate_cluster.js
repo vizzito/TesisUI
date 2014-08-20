@@ -35,7 +35,8 @@ vis.append("svg:path")
     .attr("d", d3.svg.arc().innerRadius(ry - 120).outerRadius(ry).startAngle(0).endAngle(2 * Math.PI));
     //.on("mousedown", mousedown);
 
-d3.json("/tmp/files/datafile.json", function(error,classes) {
+	datafile = "/tmp/files/datafile.json";
+d3.json(datafile, function(error,classes) {
 	var nodes = cluster.nodes(packages.root(classes)),
     links = packages.imports(nodes);
   //var nodes = cluster.nodes(json);

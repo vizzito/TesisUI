@@ -23,6 +23,9 @@
 //= require ace/ace
 //= require ace/mode-xml.js
 //= require ace/theme-monokai.js
+//= require jssor.slider.mini.js
+//= require jssor.core.js
+//= require jssor.utils.js
 
 $.ajaxSetup({ cache: false });
 $.removeData();

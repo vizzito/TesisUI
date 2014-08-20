@@ -1,6 +1,7 @@
 var showAnimation = true;
 var modalMessage = ["Generating hierarchy tree ...","Detecting Anti Patterns ..."];
 var message = 0;
+var empty=true;
 function isSelected(name, files) {
     for (var i = 0; i < files.length; i++) {
         if (files[i] == name) {
@@ -70,21 +71,22 @@ function generateTreeParams(view, tension) {
 			},
 			success : function(response) {
 				setMapperServices();
+				empty=false;
 				switch (view) {
 				case "radial":
-					showRadial(tension);
+					showRadial(tension,empty);
 					break;
 				case "bundle":
-					showBundle();
+					showBundle(empty);
 					break;
 				case "collapse":
-					showCollapse();
+					showCollapse(empty);
 					break;
 				case "rotate":
-					showRotateCluster();
+					showRotateCluster(empty);
 					break;
 				case "tree":
-					showTree();
+					showTree(empty);
 					break;
 				}
 			},

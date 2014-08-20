@@ -10,24 +10,26 @@
 
 		</header>
 		<main role="main">
-			
+
 			<div class= "page-main">
 				<div class="row">
 					<div class="col-md-4" style="padding-left: 0px; padding-right: 5px;">
 						<div class = "left-panel">
 							<%= render 'layouts/left_panel' %>
-
 						</div>
 					</div>
 					<div class="col-md-8"  style="padding-left: 5px; padding-right: 0px;">
+						
 						<div id="content">
+							<%= render 'layouts/menu_images' %>
 							<%= yield%>
 						</div>
 					</div>
+
 				</div>
 			</div>
 			<%= render 'layouts/messages' %>
-			
+
 		</main>
 		<footer>
 			<div class="fluid-container">
