@@ -20,7 +20,8 @@ var svg = d3.select("#panel-tree").append("svg")
   .append("g")
     .attr("transform", "translate(40,0)");
 
-d3.json("/tmp/files/datafile.json", function(error, root) {
+	datafile = "/tmp/files/datafile.json";
+d3.json(datafile, function(error, root) {
   var nodes = cluster.nodes(packages.root(root)),
       links = cluster.links(nodes);
 

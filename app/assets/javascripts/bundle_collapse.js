@@ -28,7 +28,9 @@ function showCollapse(){
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.json("/tmp/files/datafile.json", function(error, classes) {
+		datafile = "/tmp/files/datafile.json";
+	
+	d3.json(datafile, function(error, classes) {
 		classes.x0 = 0;
 		classes.y0 = 0;
 		root =  cluster.nodes(packages.root(classes))[0];

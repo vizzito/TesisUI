@@ -2,7 +2,7 @@ function showTension(){
 $('#slider1').slider();
 		$('#slider1').on('slide', function(ev) {
 			$("#sliderValLabel").val(ev.value);
-			showRadial(ev.value);
+			showRadial(ev.value,false);
 
 		});
 

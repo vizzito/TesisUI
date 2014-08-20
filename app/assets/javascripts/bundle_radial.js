@@ -10,10 +10,6 @@ function loadRadialButton(){
 }
 
 function showRadial(num){
-	//por ahora lo dejo! los levanta desde el archivo mapFiles.json
-	// esta puesto solo en bundle
-	setMapperServices();
-	///////////////////////
 var tension = num/100.0;
 var diameter = 650,
     radius = diameter / 2,
@@ -43,7 +39,8 @@ var svg = d3.select("#panel-radial").append("svg")
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-d3.json("/tmp/files/datafile.json", function(error, classes) {
+	datafile = "/tmp/files/datafile.json";
+d3.json(datafile, function(error, classes) {
       var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes);
 
@@ -68,6 +65,7 @@ d3.json("/tmp/files/datafile.json", function(error, classes) {
       .on("mouseout", mouseouted)
       .on("click", nodeShowDataOnClick);
      // .on("click", pepe);
+
 });
 
 //function pepe(d){

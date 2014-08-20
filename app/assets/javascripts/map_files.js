@@ -3,17 +3,12 @@
 //				,'archivo2.wsdl': '/home/panther/workspace/ServiceClusterer/botomUp1/AltadeRelaciones.wsdl'};  
 var mapServices;
 function setMapperServices() {
-	//mapFiles = getMap();
-//	if (mapServices == null) {
-		//mapFiles = new Map();
-		var request = new XMLHttpRequest();
+	var request = new XMLHttpRequest();
+	
 		request.open("GET", "/tmp/files/mapfile.json", false);
 		request.send(null);
 		var mapping = JSON.parse(request.responseText);
 		mapServices = new Map(mapping,null,null); 
-//	} else
-	//	return mapServices;
-
 }
 
 function Map(map) {

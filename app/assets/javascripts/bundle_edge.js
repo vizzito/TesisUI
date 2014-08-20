@@ -31,7 +31,9 @@ var svg = d3.select("#panel-bundle").append("svg")
 var link = svg.append("g").selectAll(".link"),
 node = svg.append("g").selectAll(".node");
 
-d3.json("/tmp/files/datafile.json", function(error, classes) {
+	datafile = "/tmp/files/datafile.json";
+
+d3.json(datafile, function(error, classes) {
   var nodes = cluster.nodes(packages.root(classes)),
       links = packages.imports(nodes);
 
