@@ -263,7 +263,7 @@ function _printSingleParam(param, id){
         detail = '<span class="label label-primary">' + type + ' </span>';
     }
     //result += '<strong>' + name + ':</strong>' + ' type -> ' + type + ' ' + detail + '</br>';
-    result += '<tr><td>' + id + '</td><td>' + name + '</td><td>' + type + '</td><td>' + detail + '</td></tr>';
+    result += '<tr><td style="width:13%;">' + id + '</td><td style="width:33%;">' + name + '</td><td style="width:33%;">' + type + '</td><td style="width:20%;">' + detail + '</td></tr>';
     return result;
 }
 
