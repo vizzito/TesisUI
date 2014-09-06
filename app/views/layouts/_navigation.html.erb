@@ -1,54 +1,53 @@
 <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand"><i class="fa fa-bar-chart-o"></i> WSDL Analyzer.</a>
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand"><i class="fa fa-bar-chart-o"></i> WSDL Analyzer.</a>
 
+		</div>
+		<!-- AGREGARLO AL PANEL PRINCIPAL... VER COMO!!-->
 
-    </div>
-    <!-- AGREGARLO AL PANEL PRINCIPAL... VER COMO!!-->
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav pull-right">
+				<!-- class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">Archivo <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				<li>
+				<a>Abrir</a>
+				</li>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav pull-right">
-        <!-- class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown">Archivo <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li>
-                    <a>Abrir</a>
-                </li>
+				</ul>
+				</li-->
+					<li class="dropdown">
+						<a id="view-menu" class="dropdown-toggle" disabled data-toggle="dropdown">Graphics <b class="caret"></b></a>
+						<ul class="dropdown-menu" style="right: 0; left: auto;">
+							<li id = "inverted_nav" style="cursor: pointer;">
+								<a><span>Inverted Radial Layout</span></a>
+							</li>
+							<li id = "bundle_nav" style="cursor: pointer;">
+								<a><span>Bundle Layout</span></a>
+							</li>
+							<li id = "tree_nav" style="cursor: pointer;">
+								<a><span>Tree Layout</span></a>
+							</li>
+							<li id = "rotate_nav" style="cursor: pointer;">
+								<a><span>Rotate Cluster Layout</span></a>
+							</li>
+							<li id = "collapse_nav" style="cursor: pointer;">
+								<a><span>Collapse Tree Layout</span></a>
+							</li>
+						</ul>
+					</li>
 
-            </ul>
-        </li-->
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Graphics <b class="caret"></b></a>
-          <ul class="dropdown-menu"  style="right: 0; left: auto;">
-            <li id = "inverted_nav" style="cursor: pointer;">
-              <a><span>Inverted Radial Layout</span></a>
-            </li>
-            <li id = "bundle_nav" style="cursor: pointer;">
-              <a><span>Bundle Layout</span></a>
-            </li>
-            <li id = "tree_nav" style="cursor: pointer;">
-              <a><span>Tree Layout</span></a>
-            </li>
-            <li id = "rotate_nav" style="cursor: pointer;">
-              <a><span>Rotate Cluster Layout</span></a>
-            </li>
-            <li id = "collapse_nav" style="cursor: pointer;">
-              <a><span>Collapse Tree Layout</span></a>
-            </li>
-          </ul>
-        </li>
-
-      </ul>
-      <a class="navbar-brand pull-right"><%= link_to 'Home', root_path, class: 'navbar-brand pull-right' %></a>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+			</ul>
+			<a class="navbar-brand pull-right"><%= link_to 'Home', root_path, class: 'navbar-brand pull-right' %></a>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
 </nav>

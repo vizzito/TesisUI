@@ -29,6 +29,7 @@ class PagesController < ApplicationController
   
   def file_information
     selectedFile = params[:fileName]
+  #  @dataFile=selectedFile
     serviceMap = getServiceMap
     @serviceNames = serviceMap[selectedFile]
    render layout: false

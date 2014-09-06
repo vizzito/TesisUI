@@ -41,6 +41,7 @@ function loadFilesPanel() {
         updateFileSet(files);
     });
 
+    // no va mas! se llaman desde le generate
     $("#btn-anti-pattern").on('click', detectAntiPattern);
 
     function updateFileSet(files) {
@@ -80,7 +81,7 @@ function loadFilesPanel() {
                     reader.readAsText(f);
 
                     $("#files-table tbody").append(
-                        '<tr><td  class = "th-width">' + f.name
+                        '<tr class="selected"><td  class = "th-width">' + f.name
                             + '</td></tr>');
                 };
                 func(newFiles[i]);
@@ -158,6 +159,12 @@ function nodeShowDataOnClick(d) {
             editor.scrollToLine(0);
             editor.focus();
         }
+        
+       // aca muestro el detector por filename
+        showDetectorService(fileName);
+        showSingleChartDetectorService();
+       // detector = mapAntiPattern.fileName;
+      //  $("#anti-pattern-content").html(response)
 
         $('#modalWSDLFile').on('shown.bs.modal', function(e) {
 
@@ -188,7 +195,7 @@ function showInfoFile(fileName) {
         type : 'GET',
         success : function(response) {
 
-            showAnimation = true;
+       //     showAnimation = true;
             $("#file-information-content").html(response);
         },
         error : function(jqXHR, textStatus, errorThrown) {

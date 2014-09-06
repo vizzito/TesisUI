@@ -13,7 +13,9 @@ require 'json'
      require 'rest-client'    
      response = RestClient.post 'http://localhost:8080/detector/ap-detector',{:files => data}
      jsonObject = JSON.parse(response)
-     return jsonObject[0]
+     @dataDetector = response
+     return jsonObject;
+  #   return jsonObject[0]
    end
   
   def create_data_file(data)
@@ -30,6 +32,15 @@ require 'json'
     newFile.puts(data)
     newFile.close
   end
+  
+  def create_data_detector(data)
+    puts "dataDetector::: #{data}"
+    path = Rails.root.join('public', 'tmp','files').to_s
+    newFile = File.open(path+"/dataDetector.json", 'w+')
+    newFile.puts(data)
+    newFile.close
+  end
+  
   def createServiceMap(data)
     serviceMap = {}
     files = data.split(",")

@@ -13,6 +13,7 @@ class TreeGeneratorController < ApplicationController
     callService(params)
     create_data_file(@dataFile)
     create_data_map(@dataMap)
+    create_data_detector(@dataDetector)
     @serviceMap = createServiceMap(@dataMap)
     render :json=>true
   end

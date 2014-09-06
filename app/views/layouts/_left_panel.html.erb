@@ -8,6 +8,9 @@
 				<li>
 					<a href="#tab2" data-toggle="tab"><i class="fa fa-info-circle"></i> Info</a>
 				</li>
+				<li>
+					<a href="#tab3" data-toggle="tab"><i class="fa fa-bar-chart-o"></i> Stats</a>
+				</li>
 			</ul> </span>
 	</div>
 	<div class="panel-body">
@@ -94,7 +97,8 @@
 				</div>
 				<div class ="panel-container">
 					<div class = "row table-container">
-						<div class="panel panel-default">
+						<div class="panel panel-default" style="max-height: 600px;
+    overflow-y:scroll; ">
 							<div class="panel-heading">
 								<h3 class="panel-title"><i class="fa fa-info-circle"></i></span> AntiPattern Info:
 								<button id="btn-anti-pattern" class="btn btn-success btn-xs" style="float: right;">
@@ -109,6 +113,16 @@
 
 				</div>
 			</div>
+			
+			<div class="tab-pane" id="tab3">
+				<div class ="panel-container">
+					<input style="display:none;" type="file" name="file_upload" id="file_upload" multiple>
+					<div class = "row table-container">
+						<div id="single-chart"></div>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 
 	</div>

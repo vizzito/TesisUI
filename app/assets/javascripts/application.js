@@ -26,6 +26,8 @@
 //= require jssor.slider.mini.js
 //= require jssor.core.js
 //= require jssor.utils.js
+//= require google-chart.js
+//= require chartkick.js
 
 $.ajaxSetup({ cache: false });
 $.removeData();

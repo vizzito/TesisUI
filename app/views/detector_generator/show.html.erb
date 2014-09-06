@@ -1,0 +1,30 @@
+<div id="pattern_detector">
+	<div class = "row">
+			<div class = "col-md-12" style="margin-bottom: 15px;">
+				<h4 class = "fileName">File: <strong><%= @fileName%></strong></h4>
+			</div>
+		</div>
+	<div class="panel-group" id="accordion">
+		<% 
+			@dataFile = @mapDetector[@fileName]
+			@dataPatternDetector = @dataFile["antiPatterns"]
+	  	    @dataPatternDetector.each do |nn| 
+	  	    %>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading" style="cursor: pointer;">
+				<h4 class="panel-title"><a class="titlePattern" data-toggle="collapse" data-parent="#accordion"> 
+					<%=  
+					nn["codeName"] 
+					%></a></h4>
+			</div>
+			<div class="panel-collapse collapse">
+				<div class="panel-body">
+					<strong>Description: </strong><%= nn["problemDescription"] %> </br></br><strong>Solution: </strong><%= nn["solutionDescription"] %>
+				</div>
+			</div>
+		</div>
+		<%end%>
+	</div>
+</div>
+<%= javascript_include_tag "anti_pattern" %>

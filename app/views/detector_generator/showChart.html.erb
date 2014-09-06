@@ -1,0 +1,23 @@
+<div class="panel panel-primary">
+	<div id="piechart_3d">
+		<div>
+			<h3><span style= "margin-left: 20px">Analized: <span style="font-weight:bold"><%= @globalData["totalFilesAnalized"]%> </span>Files.</span></h3>
+		</div>
+		<%
+ @dataColumnChart = Hash.new
+      @dataColumnChart["Anti Pattern Detected"] = @globalData["totalAntiPatternFound"]
+      @dataColumnChart["Proposed Solutions"] = @globalData["totalSolutionsFound"]
+      @dataPieChart = Hash.new
+      @dataPieChart = @globalData["totalAntiPatternMap"]
+%>
+
+
+			<!-- <div  id="column-chart"> -->
+				<%= column_chart(@dataColumnChart )%>
+			<!-- </div>
+			<div id="pie-chart"> -->
+				<%= pie_chart(@dataPieChart, width: "500px")%>
+			<!-- </div> -->
+		</div>
+	</div>
+</div>

@@ -9,6 +9,7 @@
 			<%= render "parameters_layout/partial_param" %>
 
 		</header>
+
 		<main role="main">
 
 			<div class= "page-main">
@@ -18,14 +19,34 @@
 							<%= render 'layouts/left_panel' %>
 						</div>
 					</div>
-					<div class="col-md-8"  style="padding-left: 5px; padding-right: 0px;">
-						
-						<div id="content">
-							<%= render 'layouts/menu_images' %>
-							<%= yield%>
+					<div id="main-content" class="col-md-8"  style="padding-left: 5px; padding-right: 0px;">
+						<div class="panel panel-primary">
+							<div class="panel-heading panel-heading-tabs">
+								<span class="pull-left"> <!-- Tabs -->
+									<ul class="nav panel-tabs">
+										<li class="active">
+											<a href="#tab4" data-toggle="tab"> <i class="fa fa-file-text-o"></i> Graphic</a>
+										</li>
+										<li>
+											<a href="#tab5" data-toggle="tab"><i class="fa fa-bar-chart-o"></i> Stats</a>
+										</li>
+									</ul> </span>
+							</div>
+							<div class="tab-content">
+
+								<div class="tab-pane active" id="tab4">
+									<div id="content">
+										<%= yield%>
+									</div>
+								</div>
+								<div class="tab-pane" id="tab5">
+									<div id="chart-detector">
+										<div id="chart-pattern-content"></div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 			<%= render 'layouts/messages' %>

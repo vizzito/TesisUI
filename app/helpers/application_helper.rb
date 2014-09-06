@@ -10,10 +10,10 @@ module ApplicationHelper
     end
   end
   
-  def dataFileSet
-    path = Rails.root.join('public', 'tmp','files').to_s
-    newFile = File.read(path+"/map.json")
-    fileSet = JSON.parse(newFile)    
-  end
+ # def dataFileSet
+  #  path = Rails.root.join('public', 'tmp','files').to_s
+ #   newFile = File.read(path+"/map.json")
+ #   fileSet = JSON.parse(newFile)    
+ # end
  
 end

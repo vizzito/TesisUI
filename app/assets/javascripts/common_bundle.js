@@ -1,7 +1,7 @@
 var showAnimation = true;
 var modalMessage = ["Generating hierarchy tree ...","Detecting Anti Patterns ..."];
 var message = 0;
-var empty=true;
+
 function isSelected(name, files) {
     for (var i = 0; i < files.length; i++) {
         if (files[i] == name) {
@@ -23,16 +23,13 @@ function getSelectedFiles() {
 }
 
 function callDetectorService(files) {
-	showAnimation = true;
-	message = 1;
 	$.ajax({
 		url : 'anti_pattern_detector',
 		data : {files : files},
 		type : 'POST',
 		success : function(response) {
-			
-			$("#anti-pattern-content").html(response);
 			console.log(response);
+			showChartDetectorService();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log('ERRORS: ' + textStatus);
@@ -40,12 +37,73 @@ function callDetectorService(files) {
 
 	});
 }
+function showChartDetectorService() {
+	var data = new FormData();
+	$.ajax({
+		url : 'show_info_chart_detector',
+		type : 'POST',
+		success : function(response) {
+			
+			$("#chart-pattern-content").html(response);
+			console.log(response);
+		},
+		error : function(response) {
+			
+			$("#chart-pattern-content").html(response.responseText);
+		}
+
+	});
+}
+
+
+function showSingleChartDetectorService() {
+	var data = new FormData();
+	$.ajax({
+		url : 'show_single_info_chart_detector',
+		type : 'POST',
+		success : function(response) {
+			
+			$("#single-chart").html(response);
+			console.log(response);
+		},
+		error : function(response) {
+			
+			$("#single-chart").html(response.responseText);
+		}
+
+	});
+}
+
+
+function showDetectorService(file) {
+	var data = new FormData();
+	data.append("fileName", file);
+	$.ajax({
+		url : 'show_anti_pattern_detector',
+		data : data,
+		dataType : 'json',
+		type : 'POST',
+		processData : false, // Don't process the files
+		contentType : false, // Set content type to false as jQuery will
+		success : function(response) {
+			
+			$("#anti-pattern-content").html(response);
+			console.log(response);
+		},
+		error : function(response) {
+			
+			$("#anti-pattern-content").html(response.responseText);
+		}
+
+	});
+}
 
 function generateTreeParams(view, tension) {
-	showAnimation = true;
-	message = 0;
+	
 	var data = new FormData();
 	var selectedFiles = getSelectedFiles();
+	
+	message = 0;
 	data.append("bottomsimil", $('#sliderValLabel1').val());
 	data.append("topsimil", $('#sliderValLabel2').val());
 	var hasFiles = false;
@@ -56,6 +114,9 @@ function generateTreeParams(view, tension) {
 		}
 	}
 	if (hasFiles) {
+		showAnimation = true;
+		callDetectorService(selectedFiles);
+		
 		$.ajax({
 			url : '/tree_generator#generate',
 			type : 'POST',
@@ -70,23 +131,25 @@ function generateTreeParams(view, tension) {
 				'Cache-Control' : 'max-age=0'
 			},
 			success : function(response) {
+				$('#myModal').hide();
+				$('#myModal').modal('hide');
+				showAnimation = false;
 				setMapperServices();
-				empty=false;
 				switch (view) {
 				case "radial":
-					showRadial(tension,empty);
+					showRadial(tension);
 					break;
 				case "bundle":
-					showBundle(empty);
+					showBundle();
 					break;
 				case "collapse":
-					showCollapse(empty);
+					showCollapse();
 					break;
 				case "rotate":
-					showRotateCluster(empty);
+					showRotateCluster();
 					break;
 				case "tree":
-					showTree(empty);
+					showTree();
 					break;
 				}
 			},
@@ -95,10 +158,7 @@ function generateTreeParams(view, tension) {
 			}
 		});
 	} else {
-		// $("#message-text").empty();
-		// $("#message-text").append("At least one file must be selected.");
-		// $("#message-content").show();
-		// $('#message-content').css('display', 'block');
+		showAnimation = false;
 		$('#message-content').animate({
 			opacity : 1
 		}, 0.6);

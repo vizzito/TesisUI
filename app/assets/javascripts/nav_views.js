@@ -1,4 +1,9 @@
 var files = [];
+
+//initialize the view on load page
+showAnimation = false;
+callAjax('inverted_radial_layout');
+
 function loadNav() {
 	$("#slidertwo").slider();
 	$('#slidertwo').on('slide', function(ev) {

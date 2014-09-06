@@ -4,6 +4,9 @@ TesisUI::Application.routes.draw do
   post "tree_generator" => 'tree_generator#generate'
   post "popover_layout" => 'pages/popover_layout#popover_layout'
   post "anti_pattern_detector" => 'detector_generator#generate'
+  post "show_anti_pattern_detector" => 'detector_generator#show'
+  post "show_info_chart_detector" => 'detector_generator#showChart'
+  post "show_single_info_chart_detector" => 'detector_generator#showSingleChart'
 
   get "partial" => 'pages#partial'
 

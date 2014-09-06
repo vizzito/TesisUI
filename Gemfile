@@ -8,6 +8,10 @@ gem "bootstrap-slider-rails", "~> 1.9.0"
 gem 'jquery-ui-sass-rails'
 gem 'json'
 gem 'rest-client', '~> 1.6.7'
+
+gem 'chartkick', '~> 1.2.4'
+gem 'groupdate', '~> 2.1.1'
+gem 'active_median', '~> 0.1.0'
 #gem 'jquery-fileupload-rails'
 
 #gem 'less-rails'
