@@ -99,13 +99,13 @@ function showDetectorService(file) {
 }
 
 function generateTreeParams(view, tension) {
-	
 	var data = new FormData();
 	var selectedFiles = getSelectedFiles();
 	
 	message = 0;
 	data.append("bottomsimil", $('#sliderValLabel1').val());
 	data.append("topsimil", $('#sliderValLabel2').val());
+	data.append("clusteringstrategy",$('input[name=cluster]:checked').val());
 	var hasFiles = false;
 	for (var i = 0; i < files.length; i++) {
 		if (isSelected(files[i].name,selectedFiles)) {
