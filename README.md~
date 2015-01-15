@@ -34,8 +34,6 @@ From Detector project
   `$: mvn install`
 - update this property with the local tomcat folder in config.properties file 
   `tomcat.dir = "/home/panther/tomcat/apache-tomcat-7.0.52/webapps/ServiceClusterer"` 
-- Deploy project (tomcat must be running)
-  `$: mvn tomcat7:deploy` | `$: mvn tomcat7:redeploy`
 
 From ServerClusterer project
 ----------------------------
