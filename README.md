@@ -17,20 +17,32 @@ Install
 * Maven 3.0.4
 
 Steps
-
-- Migrate the DB
-  : `$: rake db:migrate` (from console) 
+From TesisUI project
+----------------------------
 - Install library dependencies
   : `$: bundle install`
+- Migrate the DB
+  : `$: bundle exec rake db:migrate` (from console) 
 - Start Rails server
   : `$: rails server` // default on :3000
+
+From Detector project
+----------------------------
+- Add local dependency for detector "ap-detector-1.0.jar" located in libs folder into:
+  `.m2/repository/external/ap-detector/1.0`
+- install detector project
+  `$: mvn install`
 
 From ServerClusterer project
 ----------------------------
 - Run `$: mvn clean install` to generate .war // default in target folder
 - Run `$: mvn eclipse:clean eclipse:eclipse` 
 - Copy META-INF and WEB-INF folders into tomcat server (/webapps/ServiceClusterer/ folder)[create the folder named "ServiceClusterer"]
+- Deploy project (tomcat must be running)
+  `$: mvn tomcat7:deploy` | `$: mvn tomcat7:redeploy`
 
+Tomcat Configuration
+----------------------------
 - Add to Tomcat's Path/config/web.xml:
  `<servlet>
     <servlet-name>ServicesAPI</servlet-name>
@@ -53,5 +65,45 @@ From ServerClusterer project
 - update this property with the local tomcat folder in config.properties file 
   `tomcat.dir = "/home/panther/tomcat/apache-tomcat-7.0.52/webapps/ServiceClusterer"` 
 - give pemissions: 
-   `$: sudo chown -R  panther:panther /home/panther/tomcat/apache-tomcat-7.0.52/work/Catalina/localhost/ServiceClusterer/`
+  `$: sudo chown -R  panther:panther /home/panther/tomcat/apache-tomcat-7.0.52/work/Catalina/localhost/ServiceClusterer/`
+- add user configuration to tomcat-users.xml
+`<tomcat-users>
+<role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-jmx"/>
+  <role rolename="manager-status"/>
+  <role rolename="admin-gui"/>
+  <role rolename="admin-script"/>
+  <user username="root" password="root" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"/>
+</tomcat-users>`
+- Configure your USER_HOME/.m2/settings.xml to include the password.
+`<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+ http://maven.apache.org/xsd/settings-1.0.0.xsd">
+ <localRepository/>
+ <interactiveMode/>
+ <usePluginRegistry/>
+ <offline/>
+ <pluginGroups/>
+ <servers>
+   <server>
+     <id>tomcat</id>
+     <username>root</username>
+     <password>root</password>
+   </server>
+ </servers>
+ <mirrors/>
+ <proxies/>
+ <profiles/>
+ <activeProfiles/>
+</settings>`
 - Run tomcat server (port 8080)
+  `bin/startup.sh | tail -f logs/catalina.out`
+
+
+
+
+
+
+
