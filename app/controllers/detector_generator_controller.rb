@@ -13,6 +13,9 @@ class DetectorGeneratorController < ApplicationController
       params[:files].shift
     end
     response = callDetectorService(params[:files])
+    puts "LA RESPONSEEEEEEEE"
+    puts response
+    puts "arriba"
     @@mapDetector= Hash.new
     @totalAntipatternFound = 0
     @totalSolutionsFound = 0
@@ -53,7 +56,9 @@ class DetectorGeneratorController < ApplicationController
         @@mapDetector[nn["fileName"]]=@dataByFile
       end
     end
-
+    logger.debug "MAP DETECTOR: "
+    logger.debug @@mapDetector
+    
     @@globalInfoAntiPattern["totalAntiPatternFound"] = @totalAntipatternFound
     @@globalInfoAntiPattern["totalSolutionsFound"] = @totalSolutionsFound
     @@globalInfoAntiPattern["totalFilesAnalized"] = params[:files].size
@@ -76,6 +81,8 @@ class DetectorGeneratorController < ApplicationController
   def show
     @@fileName = params[:fileName]
     @mapDetector = getMapDetector
+    puts "MAP::DETECTOR"
+    puts @mapDetector
     @fileName = @@fileName
     render layout: false,:status => 200
   end

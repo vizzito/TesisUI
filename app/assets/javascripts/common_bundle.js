@@ -115,8 +115,6 @@ function generateTreeParams(view, tension) {
 	}
 	if (hasFiles) {
 		showAnimation = true;
-		callDetectorService(selectedFiles);
-		
 		$.ajax({
 			url : '/tree_generator#generate',
 			type : 'POST',
@@ -131,6 +129,7 @@ function generateTreeParams(view, tension) {
 				'Cache-Control' : 'max-age=0'
 			},
 			success : function(response) {
+				callDetectorService(selectedFiles);
 				$('#myModal').hide();
 				$('#myModal').modal('hide');
 				showAnimation = false;

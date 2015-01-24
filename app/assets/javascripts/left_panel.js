@@ -41,9 +41,6 @@ function loadFilesPanel() {
         updateFileSet(files);
     });
 
-    // no va mas! se llaman desde le generate
-    $("#btn-anti-pattern").on('click', detectAntiPattern);
-
     function updateFileSet(files) {
         $("#files-table tbody").html("");
         for (var i = 0; i < files.length; i++) {
