@@ -52,6 +52,19 @@ function loadNav() {
 		showAnimation = false;
 		callAjax('collapse_tree_layout');
 	});
+	
+	$(".distanceStrategy").on('click',function () {
+        $("#clusterNumber:input").removeAttr("disabled");
+        $("#clusterNumber:input").css("background","#FFFFFF");
+	});
+        
+
+	$(".hierarchyStrategy").on('click',function () {
+        $("#clusterNumber:input").attr("disabled",true);
+        $("#clusterNumber:input").css("background","#EBEBE4");
+    });;
+        
+   
 }
 function callAjax(url) {
 	$.ajax({

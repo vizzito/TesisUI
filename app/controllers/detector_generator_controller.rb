@@ -5,7 +5,6 @@ class DetectorGeneratorController < ApplicationController
 
   include CreateFileModule
   def index
-
   end
 
   def generate
@@ -13,9 +12,6 @@ class DetectorGeneratorController < ApplicationController
       params[:files].shift
     end
     response = callDetectorService(params[:files])
-    puts "LA RESPONSEEEEEEEE"
-    puts response
-    puts "arriba"
     @@mapDetector= Hash.new
     @totalAntipatternFound = 0
     @totalSolutionsFound = 0
@@ -56,8 +52,8 @@ class DetectorGeneratorController < ApplicationController
         @@mapDetector[nn["fileName"]]=@dataByFile
       end
     end
-    logger.debug "MAP DETECTOR: "
-    logger.debug @@mapDetector
+   # logger.debug "MAP DETECTOR: "
+   # logger.debug @@mapDetector
     
     @@globalInfoAntiPattern["totalAntiPatternFound"] = @totalAntipatternFound
     @@globalInfoAntiPattern["totalSolutionsFound"] = @totalSolutionsFound

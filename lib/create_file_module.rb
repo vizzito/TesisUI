@@ -1,4 +1,4 @@
-module CreateFileModule
+module CreateFileModule 
 require 'json'
   def callService(data)  
     require 'rest-client'    
@@ -7,7 +7,8 @@ require 'json'
     responseData = response.body.split("\n")
     @dataFile = responseData[0]
     @dataMap = responseData[1]
-  end
+    @numberCluster = responseData[2]
+     end
   
    def callDetectorService(data)  
      require 'rest-client'    

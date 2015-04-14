@@ -11,11 +11,12 @@ class TreeGeneratorController < ApplicationController
     top = params[:topsimil]
     updateParams(bottom,top)
     callService(params)
+
     create_data_file(@dataFile)
     create_data_map(@dataMap)
     create_data_detector(@dataDetector)
     @serviceMap = createServiceMap(@dataMap)
-    render :json=>true
+    render :json => {:success => true, :numberCluster => @numberCluster}
   end
 
   def updateParams(bottom,top)

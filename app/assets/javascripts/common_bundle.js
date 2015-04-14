@@ -10,7 +10,17 @@ function isSelected(name, files) {
     }
     return false;
 }
-
+function animateNumberCluster(numberCluster){
+	$("#clusterNumber:input").val(numberCluster);
+	originalColor = $("#clusterNumber:input").css("background");
+	 $("#clusterNumber:input").animate({
+          backgroundColor: "#FFF521",
+        }, 1000 ,function(){
+        	$("#clusterNumber:input").animate({
+		          backgroundColor: originalColor,
+		        }, 4000);
+	    });
+}
 function getSelectedFiles() {
 	var selectedFiles = [];
 	var row = $('#files-table').find('tr');
@@ -101,11 +111,12 @@ function showDetectorService(file) {
 function generateTreeParams(view, tension) {
 	var data = new FormData();
 	var selectedFiles = getSelectedFiles();
-	
+	var originalNumberCluster = $('input[name=clusterNumber]').val();
 	message = 0;
 	data.append("bottomsimil", $('#sliderValLabel1').val());
 	data.append("topsimil", $('#sliderValLabel2').val());
 	data.append("clusteringstrategy",$('input[name=cluster]:checked').val());
+	data.append("numberofclusters",originalNumberCluster);
 	var hasFiles = false;
 	for (var i = 0; i < files.length; i++) {
 		if (isSelected(files[i].name,selectedFiles)) {
@@ -129,6 +140,9 @@ function generateTreeParams(view, tension) {
 				'Cache-Control' : 'max-age=0'
 			},
 			success : function(response) {
+				if(response.numberCluster!=originalNumberCluster){
+					animateNumberCluster(response.numberCluster);
+				}
 				callDetectorService(selectedFiles);
 				$('#myModal').hide();
 				$('#myModal').modal('hide');
