@@ -43,12 +43,12 @@ function showChartDetectorService() {
 		url : 'show_info_chart_detector',
 		type : 'POST',
 		success : function(response) {
-			
+
 			$("#chart-pattern-content").html(response);
 			console.log(response);
 		},
 		error : function(response) {
-			
+
 			$("#chart-pattern-content").html(response.responseText);
 		}
 
@@ -62,12 +62,12 @@ function showSingleChartDetectorService() {
 		url : 'show_single_info_chart_detector',
 		type : 'POST',
 		success : function(response) {
-			
+
 			$("#single-chart").html(response);
 			console.log(response);
 		},
 		error : function(response) {
-			
+
 			$("#single-chart").html(response.responseText);
 		}
 
@@ -86,12 +86,12 @@ function showDetectorService(file) {
 		processData : false, // Don't process the files
 		contentType : false, // Set content type to false as jQuery will
 		success : function(response) {
-			
+
 			$("#anti-pattern-content").html(response);
 			console.log(response);
 		},
 		error : function(response) {
-			
+
 			$("#anti-pattern-content").html(response.responseText);
 		}
 
@@ -101,7 +101,7 @@ function showDetectorService(file) {
 function generateTreeParams(view, tension) {
 	var data = new FormData();
 	var selectedFiles = getSelectedFiles();
-	
+
 	message = 0;
 	data.append("bottomsimil", $('#sliderValLabel1').val());
 	data.append("topsimil", $('#sliderValLabel2').val());
@@ -153,7 +153,7 @@ function generateTreeParams(view, tension) {
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				console.log('ERRORS: ' + textStatus);
+				console.log('ERRORS: ' + textStatus + " | ERROR: " + errorThrown);
 			}
 		});
 	} else {
