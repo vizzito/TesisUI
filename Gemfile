@@ -19,10 +19,13 @@ gem 'active_median', '~> 0.1.0'
 
 #gem 'jquery-ui-sass-rails'
 group :development do
-  gem 'rails_layout'
+  gem 'sqlite3'
 end
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
+  gem 'rails_layout'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
