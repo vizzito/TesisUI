@@ -59,6 +59,9 @@ class DetectorGeneratorController < ApplicationController
     @@globalInfoAntiPattern["totalSolutionsFound"] = @totalSolutionsFound
     @@globalInfoAntiPattern["totalFilesAnalized"] = params[:files].size
     @@globalInfoAntiPattern["totalAntiPatternMap"] = @totalAntiPatternMap
+    @@globalInfoAntiPattern["error"] = @@error
+    @@globalInfoAntiPattern["inter"] = @@inter
+    @@globalInfoAntiPattern["intra"] = @@intra
     render layout: false,:status => 200
   end
 

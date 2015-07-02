@@ -8,15 +8,28 @@ require 'json'
     @dataFile = responseData[0]
     @dataMap = responseData[1]
     @numberCluster = responseData[2]
+    @validationInfo = responseData[3]
+    @dataValidation = ActiveSupport::JSON.decode(@validationInfo)
+    setDataValidation(@dataValidation)
      end
-  
+  def getDataValidation
+    return @@dataValidation
+  end
+  def setDataValidation(dataValidation)
+    @@dataValidation = dataValidation
+  end
+
    def callDetectorService(data)  
      require 'rest-client'    
      response = RestClient.post 'http://localhost:8080/detector/ap-detector',{:files => data}
      jsonObject = JSON.parse(response)
      @dataDetector = response
+     dataValidation = getDataValidation
+     puts "VALIDATION:::: #{dataValidation}"
+     @@error = dataValidation["squaredError"]
+     @@intra = dataValidation["interDistance"]
+     @@inter = dataValidation["intraDistance"]
      return jsonObject;
-  #   return jsonObject[0]
    end
   
   def create_data_file(data)
