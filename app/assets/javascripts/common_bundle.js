@@ -37,12 +37,14 @@ function callDetectorService(files) {
 		url : 'anti_pattern_detector',
 		data : {files : files},
 		type : 'POST',
+		//dataType: 'JSON',
 		success : function(response) {
 			console.log(response);
 			showChartDetectorService();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log('ERRORS: ' + textStatus);
+			showChartDetectorService();
 		}
 
 	});

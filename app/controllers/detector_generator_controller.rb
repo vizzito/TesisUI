@@ -87,6 +87,7 @@ class DetectorGeneratorController < ApplicationController
   end
 
   def showChart
+    puts "CHARTINFOOOOOOOOOOOOOOO"
     @globalData = getGlobalPatternInfo
     render layout: false,:status => 200
   end
