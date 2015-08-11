@@ -2,6 +2,7 @@ class WelcomeController < ApplicationController
   def index
     @title = "Home"
     @numberCluster = 1
+    @fileSize = 1
     initializeMapFile()
   end
 

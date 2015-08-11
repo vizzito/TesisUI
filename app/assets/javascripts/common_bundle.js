@@ -1,7 +1,6 @@
 var showAnimation = true;
 var modalMessage = ["Generating hierarchy tree ...","Detecting Anti Patterns ..."];
 var message = 0;
-
 function isSelected(name, files) {
     for (var i = 0; i < files.length; i++) {
         if (files[i] == name) {
@@ -32,23 +31,7 @@ function getSelectedFiles() {
 	return selectedFiles;
 }
 
-function callDetectorService(files) {
-	$.ajax({
-		url : 'anti_pattern_detector',
-		data : {files : files},
-		type : 'POST',
-		//dataType: 'JSON',
-		success : function(response) {
-			console.log(response);
-			showChartDetectorService();
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log('ERRORS: ' + textStatus);
-			showChartDetectorService();
-		}
 
-	});
-}
 function showChartDetectorService() {
 	var data = new FormData();
 	$.ajax({
@@ -110,9 +93,42 @@ function showDetectorService(file) {
 	});
 }
 
+function callDetectorService(files) {
+	var data = new FormData();
+	for (var i = 0; i < files.length; i++) {
+			data.append(i, files[i]);
+	}
+	$.ajax({
+		url : 'anti_pattern_detector',
+		//data : {files : files},
+		type : 'POST',
+		data : data,
+		cache : false,
+		dataType : 'json',
+		processData : false, // Don't process the files
+		contentType : false, // Set content type to false as jQuery will
+		// tell the server its a query string
+		// request
+		headers : {
+			'Cache-Control' : 'max-age=0'
+		},
+		//dataType: 'JSON',
+		success : function(response) {
+			console.log(response);
+			showChartDetectorService();
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log('ERRORS: ' + textStatus);
+			showChartDetectorService();
+		}
+
+	});
+}
+
 function generateTreeParams(view, tension) {
 	var data = new FormData();
-	var selectedFiles = getSelectedFiles();
+	var selectedLeftFiles = getSelectedFiles();
+	var selectedFiles = [];
 	var originalNumberCluster = $('input[name=clusterNumber]').val();
 	message = 0;
 	data.append("bottomsimil", $('#sliderValLabel1').val());
@@ -121,8 +137,9 @@ function generateTreeParams(view, tension) {
 	data.append("numberofclusters",originalNumberCluster);
 	var hasFiles = false;
 	for (var i = 0; i < files.length; i++) {
-		if (isSelected(files[i].name,selectedFiles)) {
+		if (isSelected(files[i].name,selectedLeftFiles)) {
 			data.append(i, files[i]);
+			selectedFiles.push(files[i]);
 			hasFiles = true;
 		}
 	}
@@ -146,8 +163,6 @@ function generateTreeParams(view, tension) {
 					animateNumberCluster(response.numberCluster);
 				}
 				callDetectorService(selectedFiles);
-				$('#myModal').hide();
-				$('#myModal').modal('hide');
 				showAnimation = false;
 				setMapperServices();
 				switch (view) {
@@ -199,9 +214,9 @@ $(document).ajaxStart(function() {
 		});
 	}
 }).ajaxStop(function() {
-	$('#myModal').hide();
-	$('#myModal').modal('hide');
-	showAnimation = false;
+		$('#myModal').hide();
+		$('#myModal').modal('hide');
+		showAnimation = false;
 });
 
 var packages = {
