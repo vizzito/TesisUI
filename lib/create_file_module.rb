@@ -23,7 +23,14 @@ require 'json'
 
    def callDetectorService(data)  
      require 'rest-client'    
-     response = RestClient.post 'http://localhost:8090/detector/ap-detector',{:files => data,:multipart => true}
+     
+     resource = RestClient::Resource.new "http://localhost:8090/detector/ap-detector", 
+                                    :timeout => -1, 
+                                    :open_timeout => -1
+
+     response = resource.post  :params => {:files => data,:multipart => true}
+     
+     #response = RestClient.post 'http://localhost:8090/detector/ap-detector',{:files => data,:multipart => true, :timeout => 90000000}
    #  response = RestClient.post 'https://detector.herokuapp.com/detector/ap-detector',{:files => data,:multipart => true}
      jsonObject = JSON.parse(response)
      @dataDetector = response
