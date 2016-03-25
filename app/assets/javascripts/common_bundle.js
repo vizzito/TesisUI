@@ -98,6 +98,8 @@ function callDetectorService(files) {
 	for (var i = 0; i < files.length; i++) {
 			data.append(i, files[i]);
 	}
+ message = 1;
+	showPopup();
 	$.ajax({
 		url : 'anti_pattern_detector',
 		//data : {files : files},
@@ -116,10 +118,12 @@ function callDetectorService(files) {
 		success : function(response) {
 			console.log(response);
 			showChartDetectorService();
+			hidePopup();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log('ERRORS: ' + textStatus);
 			showChartDetectorService();
+			hidePopup();
 		}
 
 	});
@@ -145,6 +149,7 @@ function generateTreeParams(view, tension) {
 	}
 	if (hasFiles) {
 		showAnimation = true;
+		showPopup();
 		$.ajax({
 			url : '/tree_generator#generate',
 			type : 'POST',
@@ -159,6 +164,7 @@ function generateTreeParams(view, tension) {
 				'Cache-Control' : 'max-age=0'
 			},
 			success : function(response) {
+				hidePopup();
 				if(response.numberCluster!=originalNumberCluster){
 					animateNumberCluster(response.numberCluster);
 				}
@@ -202,22 +208,53 @@ $("#message-content").on('hide', function() {
 });
 $('.loading-indicator').hide();
 
-$(document).ajaxStart(function() {
 
-	if (showAnimation) {
-		$('#myModal .modalMessage').text(modalMessage[message]);
-		$('#myModal').show();
-		$('#myModal').modal({
-			backdrop : 'static',
-			keyboard : false,
-			show : true
-		});
-	}
-}).ajaxStop(function() {
-		$('#myModal').hide();
-		$('#myModal').modal('hide');
-		showAnimation = false;
-});
+
+function showPopup(){
+//	//	$('#myModal').modal();
+	$('#myModal .modalMessage').text(modalMessage[message]);
+	$('#myModal').modal({
+		backdrop : 'static',
+		keyboard : false,
+		show : true
+	});
+//		
+//		
+		$('#myModal').modal('show');
+}
+function hidePopup(){
+//	$('#myModal').modal({
+//		backdrop : false,
+//		keyboard : true,
+//		show : false
+//	});
+	$('#myModal').modal('hide');
+}
+
+
+//$(document).ajaxStart(function() {
+//
+//	if (showAnimation) {
+//		
+//		$('#myModal').modal({
+//			backdrop : 'static',
+//			keyboard : false,
+//			show : true
+//		});
+//		$('#myModal').show();
+//		$('#myModal .modalMessage').text(modalMessage[message]);
+//	}
+//}).ajaxStop(function() {
+//		
+//		$('#myModal').modal({
+//		//	backdrop : 'static',
+//			keyboard : false,
+//				show : false
+//				}
+//				);
+//		$('#myModal').hide();
+//		showAnimation = false;
+//});
 
 var packages = {
 
