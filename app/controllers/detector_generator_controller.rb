@@ -12,7 +12,10 @@ class DetectorGeneratorController < ApplicationController
       # params[:files].shift
     # end
     puts "BBBBBBBBBB:::#{params}"
+        puts 'CALDETECTORSERVICEEEEEEEEEEEEE11111'
     response = callDetectorService(params)
+    puts 'CALDETECTORSERVICEEEEEEEEEEEEERESPONSE'
+    puts response
     @@mapDetector= Hash.new
     @totalAntipatternFound = 0
     @totalSolutionsFound = 0
@@ -82,6 +85,8 @@ class DetectorGeneratorController < ApplicationController
   def show
     @@fileName = params[:fileName]
     @mapDetector = getMapDetector
+    puts 'LLLLLLLLLLLLL'
+    puts 
     puts @mapDetector
     @fileName = @@fileName
     render layout: false,:status => 200
@@ -97,7 +102,10 @@ class DetectorGeneratorController < ApplicationController
 
   def showSingleChart
     @fileName = getFileName
-    @fileData = getMapDetector
+    @@fileData = getMapDetector
+    puts 'SSSSSSSSSSSSSSSSSSSSSSSS'
+    puts @fileName
+    puts @@fileData
     render layout: false,:status => 200
   end
 

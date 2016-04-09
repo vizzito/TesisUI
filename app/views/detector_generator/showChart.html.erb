@@ -4,6 +4,8 @@
 			<h3><span style= "margin-left: 20px">Analized: <span style="font-weight:bold"><%= @globalData["totalFilesAnalized"]%> </span>Files.</span></h3>
 		</div>
 		<%
+		puts 'CHARTINFOOOO'
+		puts @globalData["totalAntiPatternFound"]
  @dataColumnChart = Hash.new
       @dataColumnChart["Anti Pattern Detected"] = @globalData["totalAntiPatternFound"]
       @dataColumnChart["Proposed Solutions"] = @globalData["totalSolutionsFound"]
@@ -11,15 +13,9 @@
       @dataPieChart = @globalData["totalAntiPatternMap"]
       
       
-      probar si funca sacando estos puts....
-      puts 'DATACOLUMNCHART'
-      puts @dataColumnChart
-      puts 'FUNCTIONCHART'
-      puts column_chart(@dataColumnChart)
-      puts 'DATAPIECHART'
-      puts @dataPieChart
-      puts 'FUNCTIONPIECHART'
-      puts pie_chart(@dataPieChart)
+      
+      column_chart(@dataColumnChart)
+      pie_chart(@dataPieChart)
 %>
 
 

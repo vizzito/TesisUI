@@ -6,6 +6,8 @@
 		</div>
 	<div class="panel-group" id="accordion">
 		<% 
+		puts 'MAPDETECTOR!!!'
+		    puts @mapDetector
 			@dataFile = @mapDetector[@fileName]
 			@dataPatternDetector = @dataFile["antiPatterns"]
 	  	    @dataPatternDetector.each do |nn| 

@@ -5,7 +5,9 @@
 		</div>
 		<%
       @dataColumnChartS = Hash.new
-        @dataByFileS = @fileData[@fileName]
+      puts 'acarompeeeeeeeeeeee'
+      puts @@fileData
+        @dataByFileS = @@fileData[@fileName]
       
       
       @dataColumnChartS["Anti Pattern Detected"] = @dataByFileS["totalAntiPatterns"]
