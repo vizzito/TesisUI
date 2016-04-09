@@ -232,9 +232,6 @@ function hidePopup(){
 //	});
 	$('#myModal').modal('hide');
 }
-$('#tab5 i').click(function (e) {
-	showChartDetectorService();
-});
 
 //$(document).ajaxStart(function() {
 //
