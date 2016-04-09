@@ -1,24 +1,20 @@
 <div class="panel panel-primary">
-	<div id="piesinglechart_3d" style="width: 95%">
+	<div style="width: 95%">
 		<div>
 			<h3><span style= "margin-left: 20px"><span style="font-weight:bold"><%= @fileName%> </span></span></h3>
 		</div>
 		<%
-      @dataColumnChart = Hash.new
-        @dataByFile = @fileData[@fileName]
+      @dataColumnChartS = Hash.new
+        @dataByFileS = @fileData[@fileName]
       
       
-      @dataColumnChart["Anti Pattern Detected"] = @dataByFile["totalAntiPatterns"]
-      @dataColumnChart["Proposed Solutions"] = @dataByFile["totalSolutions"]
+      @dataColumnChartS["Anti Pattern Detected"] = @dataByFileS["totalAntiPatterns"]
+      @dataColumnChartS["Proposed Solutions"] = @dataByFileS["totalSolutions"]
 
-      @dataPieChart = Hash.new
-      @dataPieChart = @dataByFile["stats"]
+      @dataPieChartS = Hash.new
+      @dataPieChartS = @dataByFileS["stats"]
 %>
-			<div id="column-chart">
-				<%= column_chart(@dataColumnChart)%>
-			</div>
-			<div id="pie-chart">
-				<%= pie_chart(@dataPieChart)%>
-			</div>
+				<%= column_chart(@dataColumnChartS)%>
+				<%= pie_chart(@dataPieChartS)%>
 	</div>
 </div>

@@ -39,16 +39,19 @@ function showChartDetectorService() {
 		type : 'POST',
 		success : function(response) {
 
-			$("#chart-pattern-content").html(response);
+			$("#tot-chart").html(response);
+		//	$("#single-chart").html(response);
 			console.log(response);
 		},
 		error : function(response) {
-
-			$("#chart-pattern-content").html(response.responseText);
+			$("#tot-chart").html(response);
+			//$("#single-chart").html(response);
 		}
 
 	});
 }
+
+
 
 
 function showSingleChartDetectorService() {
@@ -62,8 +65,7 @@ function showSingleChartDetectorService() {
 			console.log(response);
 		},
 		error : function(response) {
-
-			$("#single-chart").html(response.responseText);
+			$("#single-chart").html(response);
 		}
 
 	});
@@ -230,7 +232,9 @@ function hidePopup(){
 //	});
 	$('#myModal').modal('hide');
 }
-
+$('#tab5 i').click(function (e) {
+	showChartDetectorService();
+});
 
 //$(document).ajaxStart(function() {
 //

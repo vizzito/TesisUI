@@ -9,15 +9,22 @@
       @dataColumnChart["Proposed Solutions"] = @globalData["totalSolutionsFound"]
       @dataPieChart = Hash.new
       @dataPieChart = @globalData["totalAntiPatternMap"]
+      
+      
+      probar si funca sacando estos puts....
+      puts 'DATACOLUMNCHART'
+      puts @dataColumnChart
+      puts 'FUNCTIONCHART'
+      puts column_chart(@dataColumnChart)
+      puts 'DATAPIECHART'
+      puts @dataPieChart
+      puts 'FUNCTIONPIECHART'
+      puts pie_chart(@dataPieChart)
 %>
 
 
-			<!-- <div  id="column-chart"> -->
-				<%= column_chart(@dataColumnChart )%>
-			<!-- </div>
-			<div id="pie-chart"> -->
-				<%= pie_chart(@dataPieChart, width: "500px")%>
-			<!-- </div> -->
+				<%= column_chart(@dataColumnChart)%>
+				<%= pie_chart(@dataPieChart)%>
 		</div>
 	</div>
 <div>
