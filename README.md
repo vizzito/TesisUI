@@ -1,12 +1,7 @@
-TesisUI
-=======
-
 #README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
-
-Things you may want to cover:
 
 Install
 -------
@@ -15,6 +10,43 @@ Install
 * Rails version 4.0.2
 * Tomcat 7.0.50
 * Maven 3.0.4
+
+SPRING-BOOT configuration
+=========================
+detector 
+--------
+- branch (spring)
+	- git fetch origin
+	- git rebase origin/spring
+- from /home/tesis/tesis/detector 
+	- mvn clean install (if needed)
+	- mvn spring-boot (to run app - default port:8090)
+
+
+clusterer
+---------
+- branch (spring)
+	- git fetch origin
+	- git rebase origin/spring
+- from /home/tesis/tesis/ServiceClusterer
+	- mvn clean install (if needed)
+	- mvn spring-boot (to run app - default port:8090)
+	
+UI
+--
+- branch (master)
+	- git fetch origin
+	- git rebase origin/master
+- from /home/tesis/tesis/TesisUI
+	- bundle install (first time)
+	- bundle exec rake db:migrate (first time)
+	 - rails s (start server  - default port:3000)
+
+access: http://localhost:3000
+
+
+Tomcat configuration (Optional)
+===============================
 
 Steps
 From TesisUI project
