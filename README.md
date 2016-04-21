@@ -20,7 +20,7 @@ detector
 	- git rebase origin/spring
 - from /home/tesis/tesis/detector 
 	- mvn clean install (if needed)
-	- mvn spring-boot (to run app - default port:8090)
+	- mvn spring-boot:run (to run app - default port:8090)
 
 
 clusterer
@@ -30,7 +30,7 @@ clusterer
 	- git rebase origin/spring
 - from /home/tesis/tesis/ServiceClusterer
 	- mvn clean install (if needed)
-	- mvn spring-boot (to run app - default port:8090)
+	- mvn spring-boot:run (to run app - default port:8090)
 	
 UI
 --

@@ -11,7 +11,6 @@ class DetectorGeneratorController < ApplicationController
     # if (params[:files][0]=="  Select   Add  Delete")
       # params[:files].shift
     # end
-    puts "BBBBBBBBBB:::#{params}"
     response = callDetectorService(params)
     @@mapDetector= Hash.new
     @totalAntipatternFound = 0
@@ -58,7 +57,7 @@ class DetectorGeneratorController < ApplicationController
     
     @@globalInfoAntiPattern["totalAntiPatternFound"] = @totalAntipatternFound
     @@globalInfoAntiPattern["totalSolutionsFound"] = @totalSolutionsFound
-    puts "paramsFiles:::#{params}"
+  #  puts "paramsFiles:::#{params}"
     @@globalInfoAntiPattern["totalFilesAnalized"] = @@fileSize
     @@globalInfoAntiPattern["totalAntiPatternMap"] = @totalAntiPatternMap
     @@globalInfoAntiPattern["error"] = @@error
@@ -82,16 +81,13 @@ class DetectorGeneratorController < ApplicationController
   def show
     @@fileName = params[:fileName]
     @mapDetector = getMapDetector
-    puts @mapDetector
+  #  puts @mapDetector
     @fileName = @@fileName
     render layout: false,:status => 200
   end
 
   def showChart
-    puts "CHART"
     @globalData = getGlobalPatternInfo
-    puts "#{@globalData}"
-    
     render layout: false,:status => 200
   end
 

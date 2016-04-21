@@ -7,7 +7,6 @@ class TreeGeneratorController < ApplicationController
   end
 
   def generate
-    puts "AAAAAAAAAAAA:::#{params}"
     bottom = params[:bottomsimil]
     top = params[:topsimil]
     updateParams(bottom,top)

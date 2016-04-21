@@ -10,7 +10,6 @@ require 'json'
     @numberCluster = responseData[2]
     @validationInfo = responseData[3]
     @@fileSize = responseData[4]
-    puts "TOTAL::: #{responseData[4]}"
     @dataValidation = ActiveSupport::JSON.decode(@validationInfo)
     setDataValidation(@dataValidation)
      end
@@ -39,7 +38,6 @@ require 'json'
      jsonObject = JSON.parse(response)
      @dataDetector = response
      dataValidation = getDataValidation
-     puts "VALIDATION:::: #{dataValidation}"
      @@error = dataValidation["squaredError"]
      @@intra = dataValidation["intraDistance"]
      @@inter = dataValidation["interDistance"]
@@ -54,7 +52,6 @@ require 'json'
   end
   
   def create_data_map(data)
-    puts "dataMap::: #{data}"
     path = Rails.root.join('public', 'tmp','files').to_s
     newFile = File.open(path+"/mapfile.json", 'w+')
     newFile.puts(data)
@@ -62,7 +59,6 @@ require 'json'
   end
   
   def create_data_detector(data)
-    puts "dataDetector::: #{data}"
     path = Rails.root.join('public', 'tmp','files').to_s
     newFile = File.open(path+"/dataDetector.json", 'w+')
     newFile.puts(data)
