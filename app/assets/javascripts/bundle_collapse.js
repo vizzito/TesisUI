@@ -9,8 +9,7 @@ function showCollapse(){
 	    width = 800 - margin.left - margin.right,
 	    barHeight = 20,
 	    barWidth = width * .8;
-	//var width = 660,
-    var height = 400;
+    var height = 800;
 	var i = 0,
 	    duration = 400,
 	    root;
@@ -25,6 +24,7 @@ function showCollapse(){
 	$("#panel-collapse").html("");
 	var svg = d3.select("#panel-collapse").append("svg")
 	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height)
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -43,7 +43,7 @@ function showCollapse(){
       var height = Math.max(500, nodes.length * barHeight + margin.top + margin.bottom);
 
 	  d3.select("svg")
-	      .attr("height", height);
+	      .attr("height", height*3);
 
 	  d3.select(self.frameElement)
 	      .style("height", height + "px");
